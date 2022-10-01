@@ -18,7 +18,7 @@ This repository will host all of the code as well as active changes and logs for
     * Mentees: Benny Z
 * Builders
     * Main Builder: Benny Z
-    * Calvin T, LanAhn D, BanAhn D, Neal J, Nik G
+    * Calvin T, LanAhn D, BanAhn D, Neal J, Nik G, Joseph T
 * Notebookers
     * Nik G, Benny Z
 ##
