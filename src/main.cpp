@@ -1,32 +1,29 @@
 #include "main.h"
-
-
 // Chassis constructor
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
-  //   the first port is the sensored port (when trackers are not used!)
-  {-15, -16}
+  // 10/1/2022 - 
+  {1,2,3}
 
   // Right Chassis Ports (negative port will reverse it!)
-  //   the first port is the sensored port (when trackers are not used!)
-  ,{6, 5}
+  // 10/1/2022 - 
+  ,{4,5,6}
 
   // IMU Port
-  ,20
+  // 10/1/2022 - 
+  ,7
 
-  // Wheel Diameter (Remember, 4" wheels are actually 4.125!)
-  //    (or tracking wheel diameter)
-  ,2.5
+  // Wheel Diameter
+  // 10/1/2022 - 3.25
+  ,3.25
 
   // Cartridge RPM
-  //   (or tick per rotation if using tracking wheels)
-  ,1200
+  // 10/1/2022 - 600
+  ,600
 
   // External Gear Ratio (MUST BE DECIMAL)
-  //    (or gear ratio of tracking wheel)
-  // eg. if your drive is 84:36 where the 36t is powered, your RATIO would be 2.333.
-  // eg. if your drive is 36:60 where the 60t is powered, your RATIO would be 0.6.
-  ,2
+  // 10/1/2022 - 36:60
+  ,1.66
 
 
   // Uncomment if using tracking wheels
@@ -44,9 +41,6 @@ Drive chassis (
   // 3 Wire Port Expander Smart Port
   // ,1
 );
-
-
-
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -72,21 +66,12 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.add_autons({
     Auton("Example Drive\n\nDrive forward and come back.", drive_example),
-    Auton("Example Turn\n\nTurn 3 times.", turn_example),
-    Auton("Drive and Turn\n\nDrive forward, turn, come back. ", drive_and_turn),
-    Auton("Drive and Turn\n\nSlow down during drive.", wait_until_change_speed),
-    Auton("Swing Example\n\nSwing, drive, swing.", swing_example),
-    Auton("Combine all 3 movements", combining_movements),
-    Auton("Interference\n\nAfter driving forward, robot performs differently if interfered or not.", interfered_example),
   });
 
   // Initialize chassis and auton selector
   chassis.initialize();
   ez::as::initialize();
 }
-
-
-
 /**
  * Runs while the robot is in the disabled state of Field Management System or
  * the VEX Competition Switch, following either autonomous or opcontrol. When
@@ -95,9 +80,6 @@ void initialize() {
 void disabled() {
   // . . .
 }
-
-
-
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
  * Management System or the VEX Competition Switch. This is intended for
@@ -110,9 +92,6 @@ void disabled() {
 void competition_initialize() {
   // . . .
 }
-
-
-
 /**
  * Runs the user autonomous code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -132,9 +111,6 @@ void autonomous() {
 
   ez::as::auton_selector.call_selected_auton(); // Calls selected auton from autonomous selector.
 }
-
-
-
 /**
  * Runs the operator control code. This function will be started in its own task
  * with the default priority and stack size whenever the robot is enabled via
@@ -153,17 +129,7 @@ void opcontrol() {
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
 
   while (true) {
-
-    chassis.tank(); // Tank control
-    // chassis.arcade_standard(ez::SPLIT); // Standard split arcade
-    // chassis.arcade_standard(ez::SINGLE); // Standard single arcade
-    // chassis.arcade_flipped(ez::SPLIT); // Flipped split arcade
-    // chassis.arcade_flipped(ez::SINGLE); // Flipped single arcade
-
-    // . . .
-    // Put more user control code here!
-    // . . .
-
+    chassis.arcade_standard(ez::SPLIT); // Standard split arcade
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }
