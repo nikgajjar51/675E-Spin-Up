@@ -2,15 +2,15 @@
 // Chassis constructor
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
-  // 10/1/2022 - 
+  // 10/1/2022 - 1, 2, 3
   {1,2,70}
 
   // Right Chassis Ports (negative port will reverse it!)
-  // 10/1/2022 - 
+  // 10/1/2022 - 4, 5, 6
   ,{4,5,6}
 
   // IMU Port
-  // 10/1/2022 - 
+  // 10/1/2022 - 7
   ,7
 
   // Wheel Diameter
@@ -22,24 +22,8 @@ Drive chassis (
   ,600
 
   // External Gear Ratio (MUST BE DECIMAL)
-  // 10/1/2022 - 36:60
+  // 10/1/2022 - 36:60 (1.66)
   ,1.66
-
-
-  // Uncomment if using tracking wheels
-  /*
-  // Left Tracking Wheel Ports (negative port will reverse it!)
-  // ,{1, 2} // 3 wire encoder
-  // ,8 // Rotation sensor
-
-  // Right Tracking Wheel Ports (negative port will reverse it!)
-  // ,{-3, -4} // 3 wire encoder
-  // ,-9 // Rotation sensor
-  */
-
-  // Uncomment if tracking wheels are plugged into a 3 wire expander
-  // 3 Wire Port Expander Smart Port
-  // ,1
 );
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -54,18 +38,15 @@ void initialize() {
   pros::delay(500); // Stop the user from doing anything while legacy ports configure.
 
   // Configure your chassis controls
-  chassis.toggle_modify_curve_with_controller(true); // Enables modifying the controller curve with buttons on the joysticks
-  chassis.set_active_brake(0); // Sets the active brake kP. We recommend 0.1.
-  chassis.set_curve_default(0, 0); // Defaults for curve. If using tank, only the first parameter is used. (Comment this line out if you have an SD card!)  
+  chassis.toggle_modify_curve_with_controller(false); // Enables modifying the controller curve with buttons on the joysticks
+  chassis.set_active_brake(0.1); // Sets the active brake kP. We recommend 0.1.
+  chassis.set_curve_default(1, 1); // Defaults for curve. If using tank, only the first parameter is used. (Comment this line out if you have an SD card!)  
   default_constants(); // Set the drive to your own constants from autons.cpp!
-
-  // These are already defaulted to these buttons, but you can change the left/right curve buttons here!
-  // chassis.set_left_curve_buttons (pros::E_CONTROLLER_DIGITAL_LEFT, pros::E_CONTROLLER_DIGITAL_RIGHT); // If using tank, only the left side is used. 
-  // chassis.set_right_curve_buttons(pros::E_CONTROLLER_DIGITAL_Y,    pros::E_CONTROLLER_DIGITAL_A);
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.add_autons({
     Auton("Example Drive\n\nDrive forward and come back.", drive_example),
+    Auton("Squiggles", squiggles),
   });
 
   // Initialize chassis and auton selector
