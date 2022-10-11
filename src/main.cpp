@@ -3,7 +3,7 @@
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
   // 10/1/2022 - 
-  {1,2,3}
+  {1,2,69}
 
   // Right Chassis Ports (negative port will reverse it!)
   // 10/1/2022 - 
@@ -127,7 +127,6 @@ void autonomous() {
 void opcontrol() {
   // This is preference to what you like to drive on.
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
-
   while (true) {
     chassis.arcade_standard(ez::SPLIT); // Standard split arcade
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
