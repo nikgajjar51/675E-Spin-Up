@@ -57,6 +57,6 @@ void drive_and_turn() {
 }
 
 void squiggles(){
-  chassis.set_drive_pid(11.1, 100);
+  chassis.set_drive_pid(69, 100);
   chassis.wait_drive();
 }
