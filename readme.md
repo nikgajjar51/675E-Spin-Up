@@ -27,3 +27,12 @@ This repository will host all of the code as well as active changes and logs for
     * Secondary: BanAhn D
 * Coach and Strategist:
     * Calvin T
+
+## Tucker HS Comp - 10/15/2022
+* Drivetrain:
+    * 6 Motor, 333 RPM on 4, 3.25 omni wheels, with a 3.25 traction wheel in the center of each side
+    * No odometry pods; using built-in motor encoders for PID and tracking
+* Intake / Rollers:
+    * 600 RPM directly chained to the driven shafts
+* Flywheel:
+    * 
