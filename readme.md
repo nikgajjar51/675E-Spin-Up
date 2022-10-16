@@ -35,4 +35,7 @@ This repository will host all of the code as well as active changes and logs for
 * Intake / Rollers:
     * 600 RPM directly chained to the driven shafts
 * Flywheel:
-    * 
+    * 600 RPM geared to 3600 RPM
+    * 4 in flexhweel with 36 tooth gear in the middle
+* Indexer:
+    * Single Acting Cylinder on lever arm
