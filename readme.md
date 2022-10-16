@@ -39,3 +39,4 @@ This repository will host all of the code as well as active changes and logs for
     * 4 in flexhweel with 36 tooth gear in the middle
 * Indexer:
     * Single Acting Cylinder on lever arm
+    * Lever arm for Torque
