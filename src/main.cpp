@@ -1,14 +1,16 @@
 #include "main.h"
+#include "opcontrol.hpp"
+#include "pros/motors.hpp"
 // Chassis constructor
 Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
-  {-15, -16}
+  {-20,-19,-18}
 
   // Right Chassis Ports (negative port will reverse it!)
-  ,{6, 5}
+  ,{15,14,13}
 
   // IMU Port
-  ,1
+  ,7
 
   // Wheel Diameter
   ,3.25
@@ -47,12 +49,11 @@ void opcontrol() {
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
 
   while (true) {
-
-    // chassis.tank(); // Tank control
+    flywheel_port = 11;
+    intake_port = 5;
+    flywheel_control();
+    intake_control();
     chassis.arcade_standard(ez::SPLIT); // Standard split arcade
-    // chassis.arcade_standard(ez::SINGLE); // Standard single arcade
-    // chassis.arcade_flipped(ez::SPLIT); // Flipped split arcade
-    // chassis.arcade_flipped(ez::SINGLE); // Flipped single arcade
     pros::delay(ez::util::DELAY_TIME); // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }

@@ -1,4 +1,7 @@
+#include "opcontrol.hpp"
 #include "main.h"
+#include "pros/adi.h"
+#include "pros/adi.hpp"
 #include "pros/misc.h"
 
 // flywheel speeds + intake/flywheel port placeholders
@@ -7,9 +10,9 @@ int high_speed = 12, low_speed = 9, flywheel_port, intake_port;
 pros::ADIDigitalOut indexer('A');
 // constructor for expansion pneum
 pros::ADIDigitalOut expansion('B');
-pros::Motor flywheel = pros::Motor(flywheel_port, pros::E_MOTOR_GEARSET_36,
+pros::Motor flywheel = pros::Motor(11, pros::E_MOTOR_GEARSET_36,
                                    false, pros::E_MOTOR_ENCODER_ROTATIONS);
-pros::Motor intake = pros::Motor(intake_port, pros::E_MOTOR_GEARSET_36, false,
+pros::Motor intake = pros::Motor(5, pros::E_MOTOR_GEARSET_36, true,
                                  pros::E_MOTOR_ENCODER_ROTATIONS);
 void flywheel_control() {
   if (pros::E_CONTROLLER_DIGITAL_R1 == 1) {
