@@ -35,15 +35,12 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
-
-/**
- * You should add more #includes here
- */
-//#include "okapi/api.hpp"
-//#include "pros/api_legacy.h"
+// #include "okapi/api.hpp"
+// #include "pros/api_legacy.h"
+#include "675E/driver-control.hpp"
+#include "675E/helper-functions.hpp"
+#include "675E/robot-config.hpp"
 #include "EZ-Template/api.hpp"
-
-// More includes here...
 #include "autons.hpp"
 
 /**
@@ -81,7 +78,7 @@ void opcontrol(void);
 /**
  * You can add C++-only headers here
  */
-//#include <iostream>
+// #include <iostream>
 #endif
 
 #endif  // _PROS_MAIN_H_

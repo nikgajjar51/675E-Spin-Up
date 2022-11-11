@@ -1,0 +1,9 @@
+#pragma once
+#include "EZ-Template/drive/drive.hpp"
+#include "api.h"
+void intake_in();
+void intake_out();
+void intake_stop();
+void flywheel_low();
+void flywheel_high();
+void flywheel_stop();
