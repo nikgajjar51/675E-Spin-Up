@@ -1,11 +1,7 @@
 ---
-layout: default
-title: 675E Log and Structure
-nav_order: 1
-permalink: /
+layout: Notebook Style
+title: 675E Mini-Notebook and Code
 ---
-
-[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)  
 
 ## Welcome
 
@@ -44,7 +40,7 @@ This repository will host all of the code as well as active changes and logs for
 * Coach and Strategist:
   * Calvin T
 
-## Tucker HS Comp - 10/15/2022
+## [Tucker High School Competition](https://www.robotevents.com/RE-VRC-22-8924.html) - 10/15/2022
 
 * Drivetrain:
   * 6 Motor, 333 RPM on 4, 3.25 omni wheels, with a 3.25 traction wheel in the center of each side
@@ -58,7 +54,7 @@ This repository will host all of the code as well as active changes and logs for
   * Single Acting Cylinder on lever arm
   * Lever arm for Torque
 
-## Paul Duke HS Comp - 10/29/2022
+## [Paul Duke High School Competition](https://www.robotevents.com/RE-VRC-22-8930.html) - 10/29/2022
 
 * Drivetrain:
   * No Changes
@@ -68,4 +64,55 @@ This repository will host all of the code as well as active changes and logs for
   * No Changes
 * Indexer:
   * Double Acting Cylinder on push in/out
-  
+
+## [Cross Keys High School Tournament](https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-VRC-22-9867.html) - 11/3/2022
+
+* Drivetrain:
+  * Rebuilt and just cleaned up
+  * had to fix some metal-on-metal contact
+* Intake / Rollers:
+  * Switched to 3 in flexhweels on a High Strength Shaft
+* Flywheel:
+  * Direct drive, 3600 RPM flywheel
+* Indexer:
+  * Frosted Polycarbonate for less friction
+
+## [GA TSA FLC Meet](https://www.robotevents.com/RE-VRC-22-9580.html) - 11/11/2022
+
+* Drivetrain:
+  * Minor fixes
+* Intake / Rollers:
+  * Minor fixes
+* Flywheel:
+  * Minor fixes
+* Indexer:
+  * Minor fixes
+* Expansion
+  * We had one...
+
+## Current Ports
+
+* V5 Smart Devices:
+  * Inertial: 16
+  * Optical:
+  * Radio/Controller: Any
+
+* V5 Smart Motors:
+  * Drive Left Front: 5
+  * Drive Left Middle: 3
+  * Drive Left Back: 4
+  * Drive Right Front: 20
+  * Drive Right Middle: 18
+  * Drive Right Back: 19
+  * Intake: 9
+  * Flywheel: 13
+
+* V5 3 Wire Devices:
+  * A: Line Sensor (Intake Bottom)
+  * B: Line Sensor (Intake Top)
+  * C: Line Sensor (Hopper Bottom)
+  * D: Button (Alliance Selector)
+  * E: Ultrasonic (Hopper, Output)
+  * F: Ultrasonic (Hopper, Input)
+  * G: Pneumatic (Expansion)
+  * H: Pneumatic (Indexer)
