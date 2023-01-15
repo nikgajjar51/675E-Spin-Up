@@ -1,0 +1,30 @@
+{
+  "configurations": [
+    {
+      "name": "PROS Project",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "c:\\Users\\Nikhil Gajjar\\Documents\\Robotics Club\\Code\\Test\\include",
+        "c:\\Users\\Nikhil Gajjar\\Documents\\Robotics Club\\Code\\675E Spin Up\\include"
+      ],
+      "defines": [
+        "_DEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "compilerPath": "C:\\Program Files\\PROS\\toolchain\\usr\\bin\\arm-none-eabi-g++",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "gcc-arm",
+      "compileCommands": "c:\\Users\\Nikhil Gajjar\\Documents\\Robotics Club\\Code\\675E Spin Up\\compile_commands.json",
+      "browse": {
+        "path": [
+          "c:\\Users\\Nikhil Gajjar\\Documents\\Robotics Club\\Code\\675E Spin Up"
+        ],
+        "limitSymbolsToIncludedHeaders": true,
+        "databaseFilename": ""
+      }
+    }
+  ],
+  "version": 4
+}
