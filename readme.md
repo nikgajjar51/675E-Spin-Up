@@ -96,23 +96,24 @@ This repository will host all of the code as well as active changes and logs for
   * Inertial:
   * Optical:
   * Radio/Controller: Any
+  * Vision: 5
 
 * V5 Smart Motors:
-  * Drive Left Front: 5
-  * Drive Left Middle: 4
-  * Drive Left Back: 3
-  * Drive Right Front:
-  * Drive Right Middle:
-  * Drive Right Back:
-  * Intake: 9
-  * Flywheel: 13
+  * Drive Left Front: 11 (Reversed)
+  * Drive Left Middle: 12 (Reversed)
+  * Drive Left Back: 13 (Reversed)
+  * Drive Right Front: 17
+  * Drive Right Middle :18
+  * Drive Right Back: 19
+  * Intake: 2
+  * Flywheel: 6
 
 * V5 3 Wire Devices:
   * A: Line Sensor (Intake Bottom)
   * B: Line Sensor (Intake Top)
   * C: Line Sensor (Hopper Bottom)
   * D: Button (Alliance Selector)
-  * E: Ultrasonic (Hopper, Output)
-  * F: Ultrasonic (Hopper, Input)
-  * G: Pneumatic (Expansion)
-  * H: Pneumatic (Indexer)
+  * E: Pneumatic (Expansion)
+  * F: Pneumatic (Indexer)
+  * G: Pneumatic (Tongue)
+  * H: None

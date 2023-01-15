@@ -11,12 +11,10 @@ pros::ADILineSensor disk_sensor_bottom('A');
 pros::ADILineSensor disk_sensor_top('B');
 pros::ADILineSensor hopper_sensor_bottom('C');
 pros::ADIDigitalIn alliance_selector_button('D');
-// Double Acting
-pros::ADIDigitalOut expansion_pneum('E');
 // Single Acting
+pros::ADIDigitalOut expansion_pneum('E');
 pros::ADIDigitalOut indexer_pneum('F');
 pros::ADIDigitalOut tongue_pneum('G');
-pros::ADIDigitalOut intake_pneum('H');
 // Vision
 pros::Vision vision_sensor(5, pros::E_VISION_ZERO_TOPLEFT);
  
