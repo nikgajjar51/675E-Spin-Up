@@ -135,19 +135,19 @@ void op_control_toggle() {
       master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
     if (manual_control_toggle) {
       manual_control_toggle = !manual_control_toggle;
-      manual_control_task().resume();
-      intake_task().suspend();
-      endgame_task().suspend();
-      indexer_task().suspend();
+      //manual_control_task().resume();
+      //intake_task().suspend();
+      //endgame_task().suspend();
+      //indexer_task().suspend();
       control_type = "Manual";
       master.rumble("--------");
       master.clear();
       master.set_text(1, 0, control_type);
     } else {
-      manual_control_task().suspend();
-      intake_task().resume();
-      endgame_task().resume();
-      indexer_task().resume();
+      //manual_control_task().suspend();
+      //intake_task().resume();
+      //endgame_task().resume();
+      //indexer_task().resume();
       manual_control_toggle = !manual_control_toggle;
       master.rumble("- - - ");
       master.clear();

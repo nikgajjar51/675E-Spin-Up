@@ -30,11 +30,11 @@ void opcontrol() {
   pros::Task indexer_task(indexer_control);
   pros::Task intake_task(intake_control);
   pros::Task endgame_task(endgame_control);
-  pros::Task manual_control_task(manual_control);
+  //pros::Task manual_control_task(manual_control);
   while (true) {
     drive_lock_control();
     flywheel_pid_control();
-    op_control_toggle();
+    //op_control_toggle();
     chassis.arcade_standard(ez::SPLIT);
     pros::delay(ez::util::DELAY_TIME);
   }
