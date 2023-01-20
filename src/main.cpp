@@ -1,4 +1,5 @@
 #include "main.h"
+#include "675E/match_autonomous.h"
 
 Drive chassis({-13, -12, -11}, {19, 18, 17}, 21, 3.25, 600, 1.667);
 void initialize() {
@@ -9,7 +10,10 @@ void initialize() {
   chassis.set_curve_default(2, 2);
   chassis_default_constants();
   chassis_exit_conditions();
-  ez::as::auton_selector.add_autons({});
+  ez::as::auton_selector.add_autons({
+      Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
+      Auton("Right Side\nNo Preloads\n6 Scored Disks",right_side_2),
+  });
   chassis.initialize();
   ez::as::initialize();
 }
@@ -30,11 +34,11 @@ void opcontrol() {
   pros::Task indexer_task(indexer_control);
   pros::Task intake_task(intake_control);
   pros::Task endgame_task(endgame_control);
-  //pros::Task manual_control_task(manual_control);
+  // pros::Task manual_control_task(manual_control);
   while (true) {
     drive_lock_control();
     flywheel_pid_control();
-    //op_control_toggle();
+    // op_control_toggle();
     chassis.arcade_standard(ez::SPLIT);
     pros::delay(ez::util::DELAY_TIME);
   }

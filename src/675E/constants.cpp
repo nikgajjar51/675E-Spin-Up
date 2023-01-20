@@ -27,4 +27,4 @@ double flywheel_current_velocity = 0;
 // Indexer Constants
 // BENNY
 const int indexer_fall_time = 250;
-const int indexer_rise_time = 100;
+const int indexer_rise_time = 250;

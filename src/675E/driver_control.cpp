@@ -19,11 +19,11 @@ void flywheel_pid_control() {
     if (is_flywheel_running) {
       if (is_tongue_up) {
         // BENNY - tongue down
-        flywheel_pid(2600);
+        flywheel_pid(6000);
         tongue_pneum.set_value(false);
       } else {
         // BENNY - tongue up
-        flywheel_pid(2300);
+        flywheel_pid(7400);
         tongue_pneum.set_value(true);
       }
     } else {
