@@ -92,7 +92,6 @@ This repository will host all of the code as well as active changes and logs for
 
 ## [South Forsyth High School Tournament](https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-VRC-22-8882.html) - 12/17/2022
 
-
 * Drivetrain:
   * Minor fixes
 * Intake / Rollers:
