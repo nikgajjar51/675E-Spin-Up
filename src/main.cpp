@@ -12,10 +12,11 @@ void initialize() {
   chassis_default_constants();
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
-      Auton("Programming Skills 1", programming_skills_1),
-      Auton("Right Side\nAWP0", right_side_autonomous_win_point),
+      Auton("Programming Skills 1\n Right Side", programming_skills_1),
+      Auton("Right Side\nAWP", right_side_autonomous_win_point),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
-      Auton("Right Side\nNo Preloads\n6 Scored Disks", right_side_2),
+      Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_2),
+      Auton("Right Side\n2 Preloads\n5 Scored Disks", right_side_3),
   });
   chassis.initialize();
   ez::as::initialize();
@@ -37,11 +38,9 @@ void opcontrol() {
   pros::Task indexer_task(indexer_control);
   pros::Task intake_task(intake_control);
   pros::Task endgame_task(endgame_control);
-  // pros::Task manual_control_task(manual_control);
   while (true) {
     drive_lock_control();
     flywheel_pid_control();
-    // op_control_toggle();
     chassis.arcade_standard(ez::SPLIT);
     pros::delay(ez::util::DELAY_TIME);
   }
