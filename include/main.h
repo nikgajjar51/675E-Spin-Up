@@ -9,6 +9,7 @@
 #include "675E/driver_control.h"
 #include "675E/helper_functions.h"
 #include "675E/match_autonomous.h"
+#include "675E/programming_skills.h"
 using namespace pros;
 using namespace pros::literals;
 #ifdef __cplusplus

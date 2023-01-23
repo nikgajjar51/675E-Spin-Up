@@ -1,5 +1,6 @@
 #include "main.h"
 #include "675E/match_autonomous.h"
+#include "EZ-Template/auton.hpp"
 
 Drive chassis({-13, -12, -11}, {19, 18, 17}, 21, 3.25, 600, 1.667);
 void initialize() {
@@ -11,8 +12,10 @@ void initialize() {
   chassis_default_constants();
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
+      Auton("Programming Skills 1", programming_skills_1),
+      Auton("Right Side\nAWP0", right_side_autonomous_win_point),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
-      Auton("Right Side\nNo Preloads\n6 Scored Disks",right_side_2),
+      Auton("Right Side\nNo Preloads\n6 Scored Disks", right_side_2),
   });
   chassis.initialize();
   ez::as::initialize();

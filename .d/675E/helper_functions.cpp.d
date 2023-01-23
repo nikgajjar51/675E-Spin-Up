@@ -82,7 +82,7 @@ bin/675E/helper_functions.cpp.o: src/675E/helper_functions.cpp \
  include/EZ-Template/drive/drive.hpp include/EZ-Template/sdcard.hpp \
  include/675E/robot_config.h include/675E/constants.h \
  include/675E/driver_control.h include/675E/helper_functions.h \
- include/675E/match_autonomous.h
+ include/675E/match_autonomous.h include/675E/programming_skills.h
 include/main.h:
 include/api.h:
 include/pros/adi.h:
@@ -249,3 +249,4 @@ include/675E/constants.h:
 include/675E/driver_control.h:
 include/675E/helper_functions.h:
 include/675E/match_autonomous.h:
+include/675E/programming_skills.h:

@@ -1,47 +1,50 @@
 #include "main.h"
-#include "pros/rtos.h"
-#include "pros/rtos.hpp"
 const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
              high_speed_multiplier = 2;
-const int drive_speed = 70, turn_speed = 40, swerve_speed = 30;
+const int drive_speed = 50, turn_speed = 40, swerve_speed = 30;
 void left_side_autonomous_win_point() {}
 void right_side_autonomous_win_point() {
-  intake_power(100);
-  flywheel_aysnc_pid_control(7200);
-  chassis.set_drive_pid(12, drive_speed * normal_speed_multiplier);
+  intake_power(75);
+  flywheel_aysnc_pid_control(4750);
+  chassis.set_drive_pid(24, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_turn_pid(12.5, turn_speed * normal_speed_multiplier);
+  chassis.set_turn_pid(180, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(-12, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(203, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   index_count(3);
-  pros::delay(500);
-  chassis.set_turn_pid(-45, turn_speed * normal_speed_multiplier);
+  pros::delay(700);
+  intake_power(0);
+  chassis.set_turn_pid(135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(-17, drive_speed * normal_speed_multiplier);
+  flywheel_aysnc_pid_control(0);
+  chassis.set_drive_pid(38, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_turn_pid(-45, turn_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(0, turn_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(5, drive_speed * normal_speed_multiplier);
+  chassis.set_turn_pid(180, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   intake_power(25);
-  pros::delay(500);
-  intake_power(0);
-  chassis.set_turn_pid(-45, turn_speed * normal_speed_multiplier);
+  chassis.set_drive_pid(8, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  /*
-   *2 preloads*
-   go forwards
-   turn to goal
-   shoot 2
-   swerve backwards
-   turn rollers for x ms TODO replace with color detection functions
-   swerve to 45 degrees
-   start intake
-   go forwards
-   *intake 3*
-   stop drive
-    */
+  pros::delay(1000);
+  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(100);
+  chassis.set_drive_pid(90, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(-25);
+  chassis.set_drive_pid(40, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-90, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(8, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  pros::delay(1000);
+  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
 }
 void right_side_1() {
   intake_power(100);

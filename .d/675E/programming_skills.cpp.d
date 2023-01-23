@@ -1,5 +1,5 @@
-bin/675E/robot_config.cpp.o: src/675E/robot_config.cpp include/main.h \
- include/api.h include/pros/adi.h include/pros/colors.h \
+bin/675E/programming_skills.cpp.o: src/675E/programming_skills.cpp \
+ include/main.h include/api.h include/pros/adi.h include/pros/colors.h \
  include/pros/distance.h include/pros/error.h include/pros/ext_adi.h \
  include/pros/adi.h include/pros/adi.h include/pros/gps.h \
  include/pros/imu.h include/pros/link.h include/pros/llemu.h \
