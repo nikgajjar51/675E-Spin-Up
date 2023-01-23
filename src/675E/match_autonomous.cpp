@@ -51,7 +51,7 @@ void right_side_1() {
   chassis.set_drive_pid(28, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(-45, turn_speed * normal_speed_multiplier);
-  chassis.wait_drive();
+  // chassis.wait_drive();
   flywheel_aysnc_pid_control(6000);
   chassis.set_drive_pid(40, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
@@ -61,7 +61,7 @@ void right_side_1() {
   chassis.wait_drive();
   intake_power(0);
   chassis.set_drive_pid(8, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
+  // chassis.wait_drive();
   index_count(3);
   pros::delay(1000);
   flywheel_aysnc_pid_control(0);
