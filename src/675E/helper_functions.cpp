@@ -1,5 +1,21 @@
+/*
+ * --------------
+ * Helper Functions
+ * --------------
+ * This file holds all of the helper functions used in all parts of my code.
+ * These functions are used in autonomous, before autonomous, during driver
+ * control, and some functions run in the background as continous tasks.
+ */
+
+/* Includes
+ * --------
+ * Here, I 'include' any external files header files that we need.y Header
+ * files make any function or variable global by finding a function or
+ * varibable of the same type and name. In the end, this makes it easier so all
+ * of my code does not need to be included in 1 file. In this case, I included
+ * all of my files in 1 header file: main.h
+ */
 #include "main.h"
-#include "pros/rtos.hpp"
 std::string alliance_color;
 bool alliance_color_toggle = false;
 void flywheel_power(double percent) { flywheel.move(120 * percent); }
@@ -67,4 +83,18 @@ void alliance_selector_function() {
     }
   }
 }
-void roller_to_color() {}
+
+/* Controller Data Export
+ * ----------------------
+ * This function is used to print crucial data to the controller screen so that
+ * the drive and/or coach can look down at a glance and see these important
+ * values. This is especially useful for debugging.
+ */
+void controller_data_export() {
+  while (true) {
+    master.print(0, 0, "Drive: %s", drive_lock_type);
+    master.print(1, 0, "Fly Speed: %i", flywheel_rotation.get_velocity());
+    master.print(2, 0, "Fly Temp: %d", flywheel.get_temperature());
+    master.print(3, 0, "Fly Power: %d", flywheel.get_power());
+  }
+}
