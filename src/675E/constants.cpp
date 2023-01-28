@@ -19,12 +19,19 @@ void chassis_exit_conditions() {
 #define flywheel_integral_smoothing 2
 double flywheel_speeds[flywheel_smooth_size];
 double flywheel_kP = 1.0;
-double flywheel_kI = (1.0/flywheel_integral_smoothing);
+double flywheel_kI = (1.0 / flywheel_integral_smoothing);
 double flywheel_integral = 0;
 double flywheel_error = 0;
 double flywheel_speed = 0;
 double flywheel_current_velocity = 0;
+
+// Flywheel 2 Constants
+double kP = 1;
+double kI = 1;
+double kD = 0.01;
+
+double error, integral, derivative, previous_error;
+
 // Indexer Constants
-// BENNY
 const int indexer_fall_time = 250;
 const int indexer_rise_time = 250;

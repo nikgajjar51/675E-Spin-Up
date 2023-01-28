@@ -110,7 +110,7 @@ void intake_control() {
  */
 void endgame_control() {
   while (true) {
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
       expansion_pneum.set_value(true);
     }
     pros::delay(20);
@@ -138,9 +138,10 @@ void drive_lock_control() {
       chassis.set_drive_brake(pros::E_MOTOR_BRAKE_COAST);
       chassis.reset_drive_sensor();
       chassis.set_active_brake(0.1);
-      master.rumble(". . .");
+      master.rumble("..");
     }
   }
+  
 }
 void flywheel_manual_control() {
   if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) &&

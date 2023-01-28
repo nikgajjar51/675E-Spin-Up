@@ -15,7 +15,11 @@
  * of my code does not need to be included in 1 file. In this case, I included
  * all of my files in 1 header file: main.h
  */
+#include "EZ-Template/util.hpp"
 #include "main.h"
+#include "pros/llemu.hpp"
+#include "pros/misc.h"
+#include "robot_config.h"
 std::string alliance_color;
 bool alliance_color_toggle = false;
 pros::c::optical_rgb_s_t roller_optical_RGB = roller_optical.get_rgb();
@@ -25,6 +29,15 @@ void intake_power(double percent) { intake.move(120 * percent); }
 double mean(double x, double y) { return ((x + y) / 2); }
 double clamp(double val, double max, double min) {
   return (std::max(std::min(val, max), min));
+}
+int constrain(int value, int min, int max) {
+  if (value < min) {
+    return min;
+  }
+  if (value > max) {
+    return max;
+  }
+  return value;
 }
 double flywheel_get_velocity() {
   double sum = 0;
@@ -61,6 +74,31 @@ void flywheel_pid(double target_speed) {
   std::cout << (int)(current_velocity) << "\t" << (int)flywheel_error << "\t"
             << (int)flywheel_integral << "\t" << (int)flywheel_speed << endl;
 }
+void flywheel_pid_2(double target_speed) {
+  // Get the current velocity and rotation of the flywheel
+  double current_velocity = flywheel_rotation.get_velocity();
+  double current_rotation = flywheel_rotation.get_position();
+
+  // Calculate the error between the current speed and the target speed
+  error = target_speed - current_velocity;
+
+  // Calculate the integral term using the accumulated error
+  integral += error;
+
+  // Calculate the derivative term using the change in error
+  derivative = error - previous_error;
+  previous_error = error;
+
+  // Calculate the output voltage using the PID constants and error terms
+  double output_voltage = kP * error + kI * integral + kD * derivative;
+
+  // Constrain the output voltage to the range (-127, 127)
+  output_voltage = constrain(output_voltage, -127, 127);
+
+  // Set the flywheel motor's voltage using the calculated output voltage
+  flywheel.move(output_voltage);
+}
+
 void flywheel_aysnc_pid_control(int target_speed) {
   flywheel_integral = 0;
   for (int i = 0; i < flywheel_smooth_size; i++) {
@@ -91,11 +129,18 @@ void alliance_selector_function() {
  * the drive and/or coach can look down at a glance and see these important
  * values. This is especially useful for debugging.
  */
+ int get_temp(){
+  return flywheel.get_temperature();
+ }
 void controller_data_export() {
   while (true) {
     master.print(0, 0, "Drive: %s", drive_lock_type);
-    master.print(1, 0, "Fly Speed: %d", flywheel.get_actual_velocity());
-    master.print(2, 0, "Fly Power: %d", flywheel.get_power());
+    pros::delay(50);
+    master.print(1, 0, "Fly Speed: %f",
+                 abs(round(flywheel.get_actual_velocity() / 10) * 60));
+    pros::delay(50);
+    master.print(2, 0, "Fly Temp: %i", get_temp());
+    pros::delay(250);
   }
 }
 void turn_roller_to(std::string desired_roller_color) {

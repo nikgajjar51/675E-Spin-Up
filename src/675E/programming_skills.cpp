@@ -1,10 +1,10 @@
 #include "main.h"
-const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
-             high_speed_multiplier = 2;
-const int drive_speed = 50, turn_speed = 40, swerve_speed = 30;
+const double low_speed_multiplier = .5, normal_speed_multiplier = 1.2,
+             high_speed_multiplier = 1.7;
+const int drive_speed = 60, turn_speed = 40, swerve_speed = 30;
 void programming_skills_1() {
-  intake_power(75);
-  flywheel_aysnc_pid_control(4750);
+  intake_power(100);
+  flywheel_aysnc_pid_control(7400);
   chassis.set_drive_pid(24, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(180, turn_speed * high_speed_multiplier);
@@ -18,45 +18,58 @@ void programming_skills_1() {
   intake_power(0);
   chassis.set_turn_pid(135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(38, drive_speed * high_speed_multiplier);
+  flywheel_aysnc_pid_control(0);
+  chassis.set_drive_pid(35, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(180, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  intake_power(25);
-  chassis.set_drive_pid(8, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(6, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  pros::delay(1000);
-  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  intake_power(-25);
+  pros::delay(500);
+  intake_power(0);
+  chassis.set_drive_pid(-10, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   intake_power(100);
-  chassis.set_drive_pid(90, drive_speed * high_speed_multiplier);
+  flywheel_aysnc_pid_control(7000);
+  chassis.set_drive_pid(80, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  intake_power(0);
-  chassis.set_turn_pid(55, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  index_count(2);
-  chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(30, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  intake_power(25);
-  chassis.set_turn_pid(-90, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(8, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  pros::delay(1000);
-  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-}
-void programming_skills_2() {
-  turn_roller_to("Red");
-  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(-16, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
+  chassis.set_drive_pid(-60, drive_speed * normal_speed_multiplier);
+  tongue_pneum.set_value(true);
+  chassis.wait_drive();
+  intake_power(0);
+  index_count(3);
+  pros::delay(1000);
+  flywheel_aysnc_pid_control(0);
+}
+void programming_skills_2() {
+  // turn_roller_to("Red");
+  intake_power(-25);
+  pros::delay(300);
+  intake_power(0);
+  chassis.set_drive_pid(-10, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(135, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
   intake_power(60);
-  chassis.set_drive_pid(-20, drive_speed * low_speed_multiplier);
+  chassis.set_drive_pid(2, drive_speed * low_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(10, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(0);
+  chassis.set_turn_pid(90, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(12, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(-25);
+  pros::delay(300);
+  intake_power(0);
+  chassis.set_drive_pid(-12, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
 }
