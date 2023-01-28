@@ -9,3 +9,4 @@ void flywheel_aysnc_pid_control(int target_speed);
 void alliance_selector_function();
 void pidControl();
 void controller_data_export();
+void turn_roller_to(std::string desired_roller_color);

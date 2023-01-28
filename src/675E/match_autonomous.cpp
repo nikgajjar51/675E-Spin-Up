@@ -1,10 +1,9 @@
 #include "main.h"
-#include "pros/rtos.hpp"
-#include "robot_config.h"
 const double low_speed_multiplier = .5, normal_speed_multiplier = 1.2,
              high_speed_multiplier = 1.7;
 const int drive_speed = 60, turn_speed = 40, swerve_speed = 30;
-void left_side_autonomous_win_point() {}
+void left_side_autonomous_win_point() {
+}
 void right_side_autonomous_win_point() {
   intake_power(75);
   flywheel_aysnc_pid_control(4750);

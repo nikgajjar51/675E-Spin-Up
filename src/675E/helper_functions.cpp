@@ -18,8 +18,10 @@
 #include "main.h"
 std::string alliance_color;
 bool alliance_color_toggle = false;
+pros::c::optical_rgb_s_t roller_optical_RGB = roller_optical.get_rgb();
+const int red_threshold = 25, blue_threshold = 25;
 void flywheel_power(double percent) { flywheel.move(120 * percent); }
-void intake_power(double percent) { intake.move_velocity(6 * percent); }
+void intake_power(double percent) { intake.move(120 * percent); }
 double mean(double x, double y) { return ((x + y) / 2); }
 double clamp(double val, double max, double min) {
   return (std::max(std::min(val, max), min));
@@ -83,7 +85,6 @@ void alliance_selector_function() {
     }
   }
 }
-
 /* Controller Data Export
  * ----------------------
  * This function is used to print crucial data to the controller screen so that
@@ -93,8 +94,21 @@ void alliance_selector_function() {
 void controller_data_export() {
   while (true) {
     master.print(0, 0, "Drive: %s", drive_lock_type);
-    master.print(1, 0, "Fly Speed: %i", flywheel_rotation.get_velocity());
-    master.print(2, 0, "Fly Temp: %d", flywheel.get_temperature());
-    master.print(3, 0, "Fly Power: %d", flywheel.get_power());
+    master.print(1, 0, "Fly Speed: %d", flywheel.get_actual_velocity());
+    master.print(2, 0, "Fly Power: %d", flywheel.get_power());
+  }
+}
+void turn_roller_to(std::string desired_roller_color) {
+  roller_optical.set_led_pwm(100);
+  if (desired_roller_color == "Red") {
+    while (roller_optical_RGB.red > red_threshold) {
+      intake_power(-20);
+    }
+    intake_power(0);
+  } else if (desired_roller_color == "Blue") {
+    while (roller_optical_RGB.red > blue_threshold) {
+      intake_power(-20);
+    }
+    intake_power(0);
   }
 }

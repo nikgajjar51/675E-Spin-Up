@@ -50,3 +50,13 @@ void programming_skills_1() {
   chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
 }
+void programming_skills_2() {
+  turn_roller_to("Red");
+  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(60);
+  chassis.set_drive_pid(-20, drive_speed * low_speed_multiplier);
+  chassis.wait_drive();
+}

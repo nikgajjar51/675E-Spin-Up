@@ -7,6 +7,7 @@
 Drive chassis({-13, -12, -11}, {19, 18, 17}, 21, 3.25, 600, 1.667);
 void initialize() {
   master.clear();
+  pros::Task controller_data_export_task(controller_data_export);
   ez::print_ez_template();
   pros::delay(500);
   chassis.toggle_modify_curve_with_controller(false);
@@ -16,6 +17,7 @@ void initialize() {
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
       // Auton("Programming Skills 1\n Right Side", programming_skills_1),
+      // Auton("Programming Skills 2\n Left Side", programming_skills_2),
       // Auton("Right Side\nAWP/n 2 Preloads", right_side_autonomous_win_point),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_2),
@@ -38,7 +40,6 @@ void opcontrol() {
   pros::Task indexer_task(indexer_control);
   pros::Task intake_task(intake_control);
   pros::Task endgame_task(endgame_control);
-  pros::Task controller_data_export_task(controller_data_export);
   chassis.set_drive_brake(MOTOR_BRAKE_COAST);
   flywheel.set_brake_mode(MOTOR_BRAKE_COAST);
   intake.set_brake_mode(MOTOR_BRAKE_COAST);

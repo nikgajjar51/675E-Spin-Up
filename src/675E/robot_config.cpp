@@ -2,7 +2,7 @@
 // V5 Motors
 pros::Motor intake(2, pros::E_MOTOR_GEARSET_06, false,
                    pros::E_MOTOR_ENCODER_ROTATIONS);
-pros::Motor flywheel(6, pros::E_MOTOR_GEARSET_06, false,
+pros::Motor flywheel(6, pros::E_MOTOR_GEARSET_06, true,
                      pros::E_MOTOR_ENCODER_ROTATIONS);
 // V5 Optical
 pros::Optical roller_optical(16);
