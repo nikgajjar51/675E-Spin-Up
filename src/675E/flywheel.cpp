@@ -44,6 +44,8 @@ adjustments as needed.
 Regenerate response
 
 */
+bool is_flywheel_running, is_tongue_up;
+void flywheel_move_power(double percent) { flywheel.move(120 * percent); }
 int constrain(int value, int min, int max) {
   if (value < min) {
     return min;
@@ -60,11 +62,11 @@ int constrain(int value, int min, int max) {
 #define MAX_SPEED 127 // Maximum motor speed
 
 int current_speed = 0; // Current flywheel speed
-int error = 0;        // Error between desired and current speed
-int integral = 0;     // Integral of error
-int derivative = 0;   // Derivative of error
+int error = 0;         // Error between desired and current speed
+int integral = 0;      // Integral of error
+int derivative = 0;    // Derivative of error
 int last_error = 0;    // Previous error
-int output = 0;       // PID output to motor
+int output = 0;        // PID output to motor
 
 void flywheel_pid_control_2(int target_speed) {
   while (true) {
@@ -81,5 +83,22 @@ void flywheel_pid_control_2(int target_speed) {
     flywheel.move_voltage(output);
     last_error = error;
     pros::Task::delay(20);
+  }
+}
+
+void flywheel_pid_control() {
+  if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+    is_tongue_up = !is_tongue_up;
+  }
+  if (is_flywheel_running) {
+    if (is_tongue_up) {
+    flywheel_pid_control_2(120);
+      tongue_pneum.set_value(false);
+    } else {
+      flywheel_pid_control_2(90);
+      tongue_pneum.set_value(true);
+    }
+  } else {
+    flywheel_power(0);
   }
 }
