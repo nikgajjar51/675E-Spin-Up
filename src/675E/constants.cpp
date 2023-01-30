@@ -24,14 +24,8 @@ double flywheel_integral = 0;
 double flywheel_error = 0;
 double flywheel_speed = 0;
 double flywheel_current_velocity = 0;
-
-// Flywheel 2 Constants
-double kP = 1;
-double kI = 1;
-double kD = 0.01;
-
-double error, integral, derivative, previous_error;
-
+const int tongue_up_speed = 7000;
+int current_tongue_up_speed = 7000;
 // Indexer Constants
 const int indexer_fall_time = 250;
 const int indexer_rise_time = 250;

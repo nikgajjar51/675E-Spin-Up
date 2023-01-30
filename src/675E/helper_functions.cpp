@@ -74,7 +74,15 @@ void flywheel_pid(double target_speed) {
   std::cout << (int)(current_velocity) << "\t" << (int)flywheel_error << "\t"
             << (int)flywheel_integral << "\t" << (int)flywheel_speed << endl;
 }
-void flywheel_pid_2(double target_speed) {
+// Flywheel 2 Constants
+double kP = 1;
+double kI = 1;
+double kD = 0.01;
+
+double error, integral, derivative, previous_error;
+void flywheel_pid_2(double target_speed, float kP = 1, float kI = 1,
+                    float kD = 0.01, double error = 0, double integral = 0,
+                    double derivative = 0, double previous_error = 0) {
   // Get the current velocity and rotation of the flywheel
   double current_velocity = flywheel_rotation.get_velocity();
   double current_rotation = flywheel_rotation.get_position();
@@ -129,12 +137,10 @@ void alliance_selector_function() {
  * the drive and/or coach can look down at a glance and see these important
  * values. This is especially useful for debugging.
  */
- int get_temp(){
-  return flywheel.get_temperature();
- }
+int get_temp() { return flywheel.get_temperature(); }
 void controller_data_export() {
   while (true) {
-    master.print(0, 0, "Drive: %s", drive_lock_type);
+    master.print(0, 0, "Up Speed: %i", current_tongue_up_speed);
     pros::delay(50);
     master.print(1, 0, "Fly Speed: %f",
                  abs(round(flywheel.get_actual_velocity() / 10) * 60));

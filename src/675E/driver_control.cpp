@@ -17,6 +17,7 @@
  * all of my files in 1 header file: main.h
  */
 #include "main.h"
+#include "pros/misc.h"
 /* Variables
  * --------
  * Here, I defined some variables I use later one. I have booleans for toggles
@@ -47,7 +48,7 @@ void flywheel_pid_control() {
       }
       std::cout << endl << endl << "new power:" << endl << endl;
     }
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
       is_tongue_up = !is_tongue_up;
     }
     if (is_flywheel_running) {
@@ -55,11 +56,18 @@ void flywheel_pid_control() {
         flywheel_pid(7000);
         tongue_pneum.set_value(false);
       } else {
-        flywheel_pid(7400);
+        flywheel_pid(current_tongue_up_speed);
         tongue_pneum.set_value(true);
       }
     } else {
       flywheel_power(0);
+    }
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      if (current_tongue_up_speed == tongue_up_speed) {
+        current_tongue_up_speed = tongue_up_speed * 1.08571429;
+      } else if (current_tongue_up_speed != tongue_up_speed) {
+        current_tongue_up_speed = tongue_up_speed;
+      }
     }
   }
 }
@@ -107,10 +115,13 @@ void intake_control() {
  *
  * We now just use the down button on the D-Pad to activate it.
  * Sweet and Simple :)
- */
+ */ 
 void endgame_control() {
   while (true) {
-    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT) &&
+        master.get_digital(pros::E_CONTROLLER_DIGITAL_UP) &&
+        master.get_digital(pros::E_CONTROLLER_DIGITAL_X) &&
+        master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
       expansion_pneum.set_value(true);
     }
     pros::delay(20);
@@ -125,7 +136,7 @@ void endgame_control() {
  * make for an effective drive lock.
  */
 void drive_lock_control() {
-  if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+  if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
     if (drive_lock_toggle) {
       drive_lock_toggle = !drive_lock_toggle;
       drive_lock_type = "Hold ";
@@ -141,8 +152,8 @@ void drive_lock_control() {
       master.rumble("..");
     }
   }
-  
 }
+
 void flywheel_manual_control() {
   if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) &&
       master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {

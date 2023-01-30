@@ -14,7 +14,9 @@ extern double flywheel_error;
 extern double flywheel_speed;
 extern double flywheel_current_velocity;
 
-extern double kP, kI, kD, error, integral, derivative, previous_error;
+extern const int tongue_up_speed;
+extern int current_tongue_up_speed;
+
 // Intake Constants
 // Indexer Constants
 extern const int indexer_fall_time, indexer_rise_time;

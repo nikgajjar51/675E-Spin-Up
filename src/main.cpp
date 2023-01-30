@@ -15,13 +15,13 @@ void initialize() {
   chassis_default_constants();
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
-      Auton("Programming Skills 1\n Right Side", programming_skills_1),
+      // Auton("Programming Skills 1\n Right Side", programming_skills_1),
       // Auton("Programming Skills 2\n Left Side", programming_skills_2),
       // Auton("Right Side\nAWP/n 2 Preloads", right_side_autonomous_win_point),
-      // Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
-      // Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_2),
+      Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
+      Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_2),
       Auton("Right Side\n2 Preloads\n5 Scored Disks", right_side_3),
-      Auton("Left Side\n0 Preloads\n6 Scored Disks\n2 Rollers", left_side_1),
+      Auton("Left Side\n0 Preloads\n6 Scored Disks\n2 Rollers", left_side_4),
   });
   chassis.initialize();
   ez::as::initialize();

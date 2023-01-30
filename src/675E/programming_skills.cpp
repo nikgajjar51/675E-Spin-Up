@@ -28,7 +28,17 @@ void programming_skills_1() {
   intake_power(-25);
   pros::delay(500);
   intake_power(0);
-  chassis.set_drive_pid(-10, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(-28, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(100);
+  chassis.set_turn_pid(90, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(30, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(-25);
+  pros::delay(500);
+  intake_power(0);
+  chassis.set_drive_pid(-50, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
@@ -36,11 +46,11 @@ void programming_skills_1() {
   flywheel_aysnc_pid_control(7000);
   chassis.set_drive_pid(80, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(-16, drive_speed * normal_speed_multiplier);
+  chassis.set_drive_pid(-22, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(-60, drive_speed * normal_speed_multiplier);
+  chassis.set_drive_pid(-65, drive_speed * normal_speed_multiplier);
   tongue_pneum.set_value(true);
   chassis.wait_drive();
   intake_power(0);
@@ -65,11 +75,11 @@ void programming_skills_2() {
   intake_power(0);
   chassis.set_turn_pid(90, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(12, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(25, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   intake_power(-25);
   pros::delay(300);
   intake_power(0);
-  chassis.set_drive_pid(-12, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(-25, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
 }
