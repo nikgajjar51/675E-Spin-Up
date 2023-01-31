@@ -1,4 +1,5 @@
 #include "main.h"
+#include "robot_config.h"
 // Chassis Constants
 void chassis_default_constants() {
   chassis.set_slew_min_power(80, 80);
@@ -25,6 +26,7 @@ double flywheel_error = 0;
 double flywheel_speed = 0;
 double flywheel_current_velocity = 0;
 const int tongue_up_speed = 7000;
+const double tongue_speed_multiplier = 1.08571429;
 int current_tongue_up_speed = 7000;
 // Indexer Constants
 const int indexer_fall_time = 250;

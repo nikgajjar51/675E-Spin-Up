@@ -15,10 +15,7 @@
  * of my code does not need to be included in 1 file. In this case, I included
  * all of my files in 1 header file: main.h
  */
-#include "EZ-Template/util.hpp"
 #include "main.h"
-#include "pros/llemu.hpp"
-#include "pros/misc.h"
 #include "robot_config.h"
 std::string alliance_color;
 bool alliance_color_toggle = false;

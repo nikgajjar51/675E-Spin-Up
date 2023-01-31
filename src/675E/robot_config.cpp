@@ -12,6 +12,7 @@ pros::Rotation flywheel_rotation(14);
 pros::ADILineSensor disk_sensor_bottom('A');
 pros::ADILineSensor disk_sensor_top('B');
 pros::ADILineSensor hopper_sensor_bottom('C');
+pros::ADIDigitalIn auton_selector_button ('C');
 pros::ADIDigitalIn alliance_selector_button('D');
 // Single Acting
 pros::ADIDigitalOut expansion_pneum('E');

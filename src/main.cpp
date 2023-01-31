@@ -1,7 +1,4 @@
 #include "main.h"
-#include "675E/robot_config.h"
-#include "EZ-Template/util.hpp"
-#include "pros/misc.h"
 
 Drive chassis({-13, -12, -11}, {19, 18, 17}, 21, 3.25, 600, 1.667);
 void initialize() {
@@ -25,6 +22,7 @@ void initialize() {
   });
   chassis.initialize();
   ez::as::initialize();
+  ez::as::limit_switch_lcd_initialize(&auton_selector_button);
 }
 void disabled() {}
 void competition_initialize() {}
