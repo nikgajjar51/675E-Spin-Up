@@ -15,6 +15,7 @@ void initialize() {
       // Auton("Programming Skills 1\n Right Side", programming_skills_1),
       // Auton("Programming Skills 2\n Left Side", programming_skills_2),
       // Auton("Right Side\nAWP/n 2 Preloads", right_side_autonomous_win_point),
+      Auton("Left Side\nAWP/n 2 Preloads", left_side_autonomous_win_point),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_2),
       Auton("Right Side\n2 Preloads\n5 Scored Disks", right_side_3),

@@ -1,20 +1,3 @@
-/*
- * --------------
- * Helper Functions
- * --------------
- * This file holds all of the helper functions used in all parts of my code.
- * These functions are used in autonomous, before autonomous, during driver
- * control, and some functions run in the background as continous tasks.
- */
-
-/* Includes
- * --------
- * Here, I 'include' any external files header files that we need.y Header
- * files make any function or variable global by finding a function or
- * varibable of the same type and name. In the end, this makes it easier so all
- * of my code does not need to be included in 1 file. In this case, I included
- * all of my files in 1 header file: main.h
- */
 #include "main.h"
 #include "robot_config.h"
 std::string alliance_color;
@@ -71,39 +54,6 @@ void flywheel_pid(double target_speed) {
   std::cout << (int)(current_velocity) << "\t" << (int)flywheel_error << "\t"
             << (int)flywheel_integral << "\t" << (int)flywheel_speed << endl;
 }
-// Flywheel 2 Constants
-double kP = 1;
-double kI = 1;
-double kD = 0.01;
-
-double error, integral, derivative, previous_error;
-void flywheel_pid_2(double target_speed, float kP = 1, float kI = 1,
-                    float kD = 0.01, double error = 0, double integral = 0,
-                    double derivative = 0, double previous_error = 0) {
-  // Get the current velocity and rotation of the flywheel
-  double current_velocity = flywheel_rotation.get_velocity();
-  double current_rotation = flywheel_rotation.get_position();
-
-  // Calculate the error between the current speed and the target speed
-  error = target_speed - current_velocity;
-
-  // Calculate the integral term using the accumulated error
-  integral += error;
-
-  // Calculate the derivative term using the change in error
-  derivative = error - previous_error;
-  previous_error = error;
-
-  // Calculate the output voltage using the PID constants and error terms
-  double output_voltage = kP * error + kI * integral + kD * derivative;
-
-  // Constrain the output voltage to the range (-127, 127)
-  output_voltage = constrain(output_voltage, -127, 127);
-
-  // Set the flywheel motor's voltage using the calculated output voltage
-  flywheel.move(output_voltage);
-}
-
 void flywheel_aysnc_pid_control(int target_speed) {
   flywheel_integral = 0;
   for (int i = 0; i < flywheel_smooth_size; i++) {
@@ -128,12 +78,6 @@ void alliance_selector_function() {
     }
   }
 }
-/* Controller Data Export
- * ----------------------
- * This function is used to print crucial data to the controller screen so that
- * the drive and/or coach can look down at a glance and see these important
- * values. This is especially useful for debugging.
- */
 int get_temp() { return flywheel.get_temperature(); }
 void controller_data_export() {
   while (true) {
@@ -146,17 +90,9 @@ void controller_data_export() {
     pros::delay(250);
   }
 }
-void turn_roller_to(std::string desired_roller_color) {
-  roller_optical.set_led_pwm(100);
-  if (desired_roller_color == "Red") {
-    while (roller_optical_RGB.red > red_threshold) {
-      intake_power(-20);
-    }
-    intake_power(0);
-  } else if (desired_roller_color == "Blue") {
-    while (roller_optical_RGB.red > blue_threshold) {
-      intake_power(-20);
-    }
-    intake_power(0);
-  }
+void match_auto_roller(){
+  intake.move_relative(.5, 600);
+}
+void skills_auto_roller(){
+  intake.move_relative(1, 600);
 }

@@ -1,35 +1,57 @@
-/*
- * --------------
- * Match Autonomi
- * --------------
- * This file holds all of the code used during the 0:15 minute autonomous
- * period. Specifically, this file has the control values, not nessecarily all
- * the raw values used, any background functions or helper functions like PID's
- * and functions to convert motor voltagee to percent, etc.
- */
 
-/* Includes
- * --------
- * Here, I 'include' any external files header files that we need.y Header
- * files make any function or variable global by finding a function or
- * varibable of the same type and name. In the end, this makes it easier so all
- * of my code does not need to be included in 1 file. In this case, I included
- * all of my files in 1 header file: main.h
- */
+#include "constants.h"
 #include "main.h"
-/* Speeds
- * ------
- * In order to make coding an autonomous easier and more consistent, I use
- * preset integers for my drive speeds. Our chassis is very back-heavy so to
- * avoid having the chassis tip over duing the auton period, we set our normal
- * drive speed as 70. Our turn speed is set to 75 as of right now, and our swerve
- * speed is less in order to minimize inwards tipping while swerving.
+#include "pros/rtos.hpp"
+/* Left Side AWP
+ * 2 Preloads
+ * 8 scored disks, 2 rollers
  */
-const int drive_speed = 70, turn_speed = 75, swerve_speed = 50;
-const double low_speed_multiplier = .5, normal_speed_multiplier = 1,
-             high_speed_multiplier = 1.7, balls_to_the_walls = 2;
-
-void left_side_autonomous_win_point() {}
+void left_side_autonomous_win_point() {
+  // Start flywheel
+  flywheel_aysnc_pid_control(8000);
+  // Spin roller to other color
+  intake.move_relative(1, 600);
+  // Wait for roller to be turned
+  pros::delay(500);
+  // Move away from roller
+  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Turn towards high goal
+  chassis.set_turn_pid(-10, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Shoot 2 disks (3 shots as an overhead)
+  index_count(3);
+  // Turn towards the
+  chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Start the intake
+  intake_power(100);
+  // Go forward to intake the 3 stack 
+  chassis.set_drive_pid(30, drive_speed * normal_speed_multiplier);
+  chassis.wait_drive();
+  // Turn towards the goal
+  chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Shoot the 3 disks
+  index_count(3);
+  //  Turn towards the other 3 disks
+  chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Go forward to intake the 3 disks and approach the roller
+  chassis.set_drive_pid(90, drive_speed * normal_speed_multiplier);
+  chassis.wait_drive();
+  // Stop the intake
+  intake_power(0);
+  // Turn towards the roller
+  chassis.set_turn_pid(-90, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Spin roller to other color
+  intake.move_relative(1, 600);
+}
+/* Right Side AWP
+ * 2 Preloads
+ * 5 scored disks, 2 rollers
+ */
 void right_side_autonomous_win_point() {
   intake_power(75);
   flywheel_aysnc_pid_control(7000);
@@ -73,6 +95,10 @@ void right_side_autonomous_win_point() {
   chassis.set_drive_pid(-5, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
 }
+/* Right Side 1
+ * No Preloads
+ * 3 scored disks, no Rollers
+ */
 void right_side_1() {
   intake_power(100);
   chassis.set_drive_pid(28, drive_speed * normal_speed_multiplier);
@@ -99,6 +125,10 @@ void right_side_1() {
   pros::delay(500);
   flywheel_aysnc_pid_control(0);
 }
+/* Right Side 2
+ * 2 Preloads
+ * 5 scored disks, no rollers
+ */
 void right_side_2() {
   intake_power(100);
   chassis.set_drive_pid(28, drive_speed * normal_speed_multiplier);
@@ -137,6 +167,10 @@ void right_side_2() {
   pros::delay(500);
   intake_power(0);
 }
+/* Right Side 3
+ * 2 Preloads
+ * 5 scored disks, 1 roller
+ */
 void right_side_3() {
   intake_power(100);
   flywheel_aysnc_pid_control(5500);
@@ -180,25 +214,12 @@ void right_side_3() {
   pros::delay(1000);
   flywheel_aysnc_pid_control(0);
 }
+/* Right Side 4
+ * 2 Preloads
+ * 8 scored disks, 2 rollers
+ */
 void right_side_4() {}
 void left_side_1() {
-  intake_power(100);
-  pros::delay(500);
-  intake_power(0);
-  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(-125, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  intake_power(100);
-  flywheel_aysnc_pid_control(3000);
-  chassis.set_drive_pid(25, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(20, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(-50, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  index_count(3);
-  intake_power(0);
 }
 void left_side_2() {}
 void left_side_3() {}

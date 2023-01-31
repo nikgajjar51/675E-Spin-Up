@@ -1,7 +1,4 @@
 #include "main.h"
-const double low_speed_multiplier = .5, normal_speed_multiplier = 1.2,
-             high_speed_multiplier = 1.7;
-const int drive_speed = 60, turn_speed = 40, swerve_speed = 30;
 void programming_skills_1() {
   intake_power(100);
   flywheel_aysnc_pid_control(7400);
