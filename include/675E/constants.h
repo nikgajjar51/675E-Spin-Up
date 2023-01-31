@@ -13,5 +13,7 @@ extern double flywheel_speeds[flywheel_smooth_size], flywheel_kP, flywheel_kI,
     flywheel_current_velocity;
 
 extern int current_tongue_up_speed;
+extern const int tongue_high_speed, tongue_low_speed;
+
 // Indexer Constants
 extern const int indexer_fall_time, indexer_rise_time;

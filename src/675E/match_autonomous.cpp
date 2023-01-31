@@ -8,7 +8,10 @@
  */
 void left_side_autonomous_win_point() {
   // Start flywheel
-  flywheel_aysnc_pid_control(8000);
+  flywheel_aysnc_pid_control(12000);
+  // Approach roller
+  chassis.set_drive_pid(1, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
   // Spin roller to other color
   intake.move_relative(1, 600);
   // Wait for roller to be turned
@@ -21,8 +24,8 @@ void left_side_autonomous_win_point() {
   chassis.wait_drive();
   // Shoot 2 disks (3 shots as an overhead)
   index_count(3);
-  // Turn towards the
-  chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
+  // Turn towards the 3 stack
+  chassis.set_turn_pid(-130, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Start the intake
   intake_power(100);
@@ -35,7 +38,7 @@ void left_side_autonomous_win_point() {
   // Shoot the 3 disks
   index_count(3);
   //  Turn towards the other 3 disks
-  chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
+  chassis.set_turn_pid(-130, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Go forward to intake the 3 disks and approach the roller
   chassis.set_drive_pid(90, drive_speed * normal_speed_multiplier);

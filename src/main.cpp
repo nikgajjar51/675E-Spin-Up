@@ -43,7 +43,6 @@ void opcontrol() {
   flywheel.set_brake_mode(MOTOR_BRAKE_COAST);
   intake.set_brake_mode(MOTOR_BRAKE_COAST);
   while (true) {
-    drive_lock_control();
     flywheel_pid_control();
     chassis.arcade_standard(ez::SPLIT);
     pros::delay(ez::util::DELAY_TIME);

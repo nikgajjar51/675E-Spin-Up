@@ -9,5 +9,3 @@ void flywheel_pid_2(double target_speed);
 void flywheel_aysnc_pid_control(int target_speed);
 void alliance_selector_function();
 void controller_data_export();
-void match_auto_roller();
-void skills_auto_roller();

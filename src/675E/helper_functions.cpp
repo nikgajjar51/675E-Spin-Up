@@ -1,3 +1,5 @@
+#include "EZ-Template/util.hpp"
+#include "constants.h"
 #include "main.h"
 #include "robot_config.h"
 std::string alliance_color;
@@ -78,21 +80,25 @@ void alliance_selector_function() {
     }
   }
 }
-int get_temp() { return flywheel.get_temperature(); }
+int get_flywheel_temp() { return flywheel.get_temperature(); }
 void controller_data_export() {
+  bool temp_rumble = false;
   while (true) {
     master.print(0, 0, "Up Speed: %i", current_tongue_up_speed);
+    if (current_tongue_up_speed == tongue_high_speed) {
+      master.rumble("... ");
+    } else if (current_tongue_up_speed == tongue_low_speed) {
+      master.rumble(". . .");
+    }
     pros::delay(50);
     master.print(1, 0, "Fly Speed: %f",
                  abs(round(flywheel.get_actual_velocity() / 10) * 60));
     pros::delay(50);
-    master.print(2, 0, "Fly Temp: %i", get_temp());
+    master.print(2, 0, "Fly Temp: %i", get_flywheel_temp());
+    if (get_flywheel_temp() > 60 || temp_rumble == false) {
+      master.rumble("-");
+      temp_rumble = true;
+    }
     pros::delay(250);
   }
-}
-void match_auto_roller(){
-  intake.move_relative(.5, 600);
-}
-void skills_auto_roller(){
-  intake.move_relative(1, 600);
 }

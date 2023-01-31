@@ -4,8 +4,8 @@ std::string drive_lock_type, control_type, driver = "Rohan";
 bool drive_lock_toggle = false, is_flywheel_running = false,
      is_tongue_up = false;
 controller_digital_e_t flywheel_toggle_button = E_CONTROLLER_DIGITAL_R2;
-controller_digital_e_t tongue_toggle_button = E_CONTROLLER_DIGITAL_DOWN;
-controller_digital_e_t tongue_speed_button = E_CONTROLLER_DIGITAL_LEFT;
+controller_digital_e_t tongue_toggle_button = E_CONTROLLER_DIGITAL_LEFT;
+controller_digital_e_t tongue_speed_button = E_CONTROLLER_DIGITAL_UP;
 controller_digital_e_t indexer_button = E_CONTROLLER_DIGITAL_R1;
 controller_digital_e_t intake_in_button = E_CONTROLLER_DIGITAL_L1;
 controller_digital_e_t intake_out_button = E_CONTROLLER_DIGITAL_L2;
@@ -47,10 +47,10 @@ void flywheel_pid_control() {
     flywheel_power(0);
   }
   if (master.get_digital_new_press(tongue_speed_button)) {
-    if (current_tongue_up_speed == 7000) {
-      current_tongue_up_speed = 7600;
-    } else if (current_tongue_up_speed != 7000) {
-      current_tongue_up_speed = 7000;
+    if (current_tongue_up_speed == tongue_high_speed) {
+      current_tongue_up_speed = tongue_high_speed;
+    } else if (current_tongue_up_speed != tongue_high_speed) {
+      current_tongue_up_speed = tongue_low_speed;
     }
   }
 }
