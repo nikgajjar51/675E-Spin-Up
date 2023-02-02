@@ -80,3 +80,21 @@ void programming_skills_2() {
   chassis.set_drive_pid(-25, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
 }
+void programming_skills(){
+  /*
+  Backwards (approach rollers)
+  Spin roller to red
+  Forwards (away from roller)
+  Start intake
+  Turn 180-220 (towards single disk)
+  Forwards (intake disk)
+  Turn towards other roller (90)
+  Stop intake
+  Backwards (approach other roller)
+  Spin roller to red
+  Forwards
+  Turn towards Goal (0-25) 
+  Shoot 3 disks
+  Turn towards 3 stack (-90)
+  */
+}

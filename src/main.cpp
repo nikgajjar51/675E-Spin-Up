@@ -7,7 +7,7 @@ void initialize() {
   ez::print_ez_template();
   pros::delay(500);
   chassis.toggle_modify_curve_with_controller(false);
-  chassis.set_active_brake(0.1);
+  chassis.set_active_brake(00);
   chassis.set_curve_default(2, 2);
   chassis_default_constants();
   chassis_exit_conditions();
@@ -28,10 +28,12 @@ void initialize() {
 void disabled() {}
 void competition_initialize() {}
 void autonomous() {
+  master.clear();
+  pros::Task controller_data_export_task(controller_data_export);
   chassis.reset_pid_targets();
   chassis.reset_gyro();
   chassis.reset_drive_sensor();
-  chassis.set_drive_brake(MOTOR_BRAKE_HOLD);
+  chassis.set_drive_brake(E_MOTOR_BRAKE_HOLD);
   ez::as::auton_selector.call_selected_auton();
 }
 void opcontrol() {
@@ -39,9 +41,9 @@ void opcontrol() {
   pros::Task intake_task(intake_control);
   pros::Task endgame_task(endgame_control);
   pros::Task controller_data_export_task(controller_data_export);
-  chassis.set_drive_brake(MOTOR_BRAKE_COAST);
-  flywheel.set_brake_mode(MOTOR_BRAKE_COAST);
-  intake.set_brake_mode(MOTOR_BRAKE_COAST);
+  chassis.set_drive_brake(pros::E_MOTOR_BRAKE_COAST);
+  flywheel.set_brake_mode(E_MOTOR_BRAKE_COAST);
+  intake.set_brake_mode(E_MOTOR_BRAKE_COAST);
   while (true) {
     flywheel_pid_control();
     chassis.arcade_standard(ez::SPLIT);

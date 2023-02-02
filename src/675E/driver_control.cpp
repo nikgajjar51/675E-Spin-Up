@@ -48,15 +48,17 @@ void flywheel_pid_control() {
   }
   if (master.get_digital_new_press(tongue_speed_button)) {
     if (current_tongue_up_speed == tongue_high_speed) {
-      current_tongue_up_speed = tongue_high_speed;
-    } else if (current_tongue_up_speed != tongue_high_speed) {
       current_tongue_up_speed = tongue_low_speed;
+
+    } else if (current_tongue_up_speed != tongue_high_speed) {
+      current_tongue_up_speed = tongue_high_speed;
     }
   }
 }
 void indexer_control() {
   while (true) {
-    if (master.get_digital(indexer_button)) {
+    if (master.get_digital(indexer_button) && is_flywheel_running &&
+        abs(round(flywheel.get_actual_velocity() / 10) * 60) > 2200) {
       index_count(1);
     }
     delay(ez::util::DELAY_TIME);
@@ -65,9 +67,12 @@ void indexer_control() {
 void intake_control() {
   while (true) {
     if (master.get_digital(intake_in_button)) {
-      intake_power(100);
+      // intake_power(100);
+      intake.move_velocity(600);
     } else if (master.get_digital(intake_out_button)) {
-      intake_power(-33);
+      //intake_power(-33);
+      intake.move_velocity(-200);
+
     } else {
       intake.move_velocity(0);
     }
