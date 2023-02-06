@@ -1,8 +1,10 @@
+#include "constants.h"
 #include "main.h"
 std::string alliance_color;
 bool alliance_color_toggle = false;
 pros::c::optical_rgb_s_t roller_optical_RGB = roller_optical.get_rgb();
 const int red_threshold = 25, blue_threshold = 25;
+int get_flywheel_temp() { return flywheel.get_temperature(); }
 void flywheel_power(double percent) { flywheel.move(120 * percent); }
 void intake_power(double percent) { intake.move(120 * percent); }
 double mean(double x, double y) { return ((x + y) / 2); }
@@ -28,9 +30,9 @@ double flywheel_get_velocity() {
 void index_count(int count) {
   for (int i = 0; i < count; i++) {
     indexer_pneum.set_value(true);
-    pros::delay(indexer_fall_time);
-    indexer_pneum.set_value(false);
     pros::delay(indexer_rise_time);
+    indexer_pneum.set_value(false);
+    pros::delay(indexer_fall_time);
   }
 }
 void flywheel_pid(double target_speed) {
@@ -77,8 +79,6 @@ void alliance_selector_function() {
     }
   }
 }
-int get_flywheel_temp() { return flywheel.get_temperature(); }
-
 void controller_data_export() {
   while (true) {
     master.print(0, 0, "Up Speed: %i", current_tongue_up_speed);

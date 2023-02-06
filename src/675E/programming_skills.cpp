@@ -1,4 +1,7 @@
+#include "EZ-Template/util.hpp"
+#include "constants.h"
 #include "main.h"
+#include "pros/rtos.hpp"
 void programming_skills_1() {
   intake_power(100);
   flywheel_aysnc_pid_control(7400);
@@ -80,21 +83,53 @@ void programming_skills_2() {
   chassis.set_drive_pid(-25, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
 }
-void programming_skills(){
-  /*
-  Backwards (approach rollers)
-  Spin roller to red
-  Forwards (away from roller)
-  Start intake
-  Turn 180-220 (towards single disk)
-  Forwards (intake disk)
-  Turn towards other roller (90)
-  Stop intake
-  Backwards (approach other roller)
-  Spin roller to red
-  Forwards
-  Turn towards Goal (0-25) 
-  Shoot 3 disks
-  Turn towards 3 stack (-90)
-  */
+void programming_skills() {
+  tongue_pneum.set_value(true);
+  intake_power(100);
+  chassis.set_drive_pid(3, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  pros::delay(200);
+  intake_power(0);
+  chassis.set_drive_pid(-4, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(135, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(100);
+  chassis.set_drive_pid(20, drive_speed * normal_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(90, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  intake_power(50);
+  flywheel_aysnc_pid_control(7400);
+  chassis.set_drive_pid(20, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(-6, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(0, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(-66, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(10, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  index_count(3);
+  flywheel_aysnc_pid_control(7700);
+  chassis.set_turn_pid(0, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(45, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-130, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(55, drive_speed * low_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  index_count(3);
+  chassis.set_drive_pid(55, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(-130, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(40, drive_speed * normal_speed_multiplier);
+  chassis.wait_drive();
 }

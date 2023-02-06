@@ -1,6 +1,5 @@
 bin/675E/programming_skills.cpp.o: src/675E/programming_skills.cpp \
- include/main.h include/pros/rtos.hpp include/pros/rtos.h \
- include/675E/constants.h include/api.h include/pros/adi.h \
+ include/EZ-Template/util.hpp include/api.h include/pros/adi.h \
  include/pros/colors.h include/pros/distance.h include/pros/error.h \
  include/pros/ext_adi.h include/pros/adi.h include/pros/adi.h \
  include/pros/gps.h include/pros/imu.h include/pros/link.h \
@@ -72,21 +71,19 @@ bin/675E/programming_skills.cpp.o: src/675E/programming_skills.cpp \
  include/pros/gps.hpp include/pros/gps.h include/pros/imu.hpp \
  include/pros/imu.h include/pros/llemu.hpp include/pros/llemu.h \
  include/pros/misc.hpp include/pros/misc.h include/pros/motors.hpp \
- include/pros/motors.h include/pros/rtos.hpp include/pros/optical.hpp \
- include/pros/optical.h include/pros/rotation.hpp include/pros/rotation.h \
+ include/pros/motors.h include/pros/rtos.hpp include/pros/rtos.h \
+ include/pros/optical.hpp include/pros/optical.h \
+ include/pros/rotation.hpp include/pros/rotation.h include/pros/rtos.hpp \
  include/pros/screen.hpp include/pros/screen.h include/pros/vision.hpp \
  include/pros/vision.h include/pros/link.hpp include/pros/link.h \
- include/675E/driver_control.h include/675E/helper_functions.h \
- include/675E/match_autonomous.h include/675E/programming_skills.h \
- include/675E/robot_config.h include/EZ-Template/api.hpp \
- include/EZ-Template/PID.hpp include/EZ-Template/util.hpp \
+ include/675E/constants.h include/main.h include/675E/driver_control.h \
+ include/675E/helper_functions.h include/675E/match_autonomous.h \
+ include/675E/programming_skills.h include/675E/robot_config.h \
+ include/EZ-Template/api.hpp include/EZ-Template/PID.hpp \
  include/EZ-Template/auton.hpp include/EZ-Template/auton_selector.hpp \
  include/EZ-Template/drive/drive.hpp include/EZ-Template/sdcard.hpp \
  include/api.h
-include/main.h:
-include/pros/rtos.hpp:
-include/pros/rtos.h:
-include/675E/constants.h:
+include/EZ-Template/util.hpp:
 include/api.h:
 include/pros/adi.h:
 include/pros/colors.h:
@@ -227,16 +224,20 @@ include/pros/misc.h:
 include/pros/motors.hpp:
 include/pros/motors.h:
 include/pros/rtos.hpp:
+include/pros/rtos.h:
 include/pros/optical.hpp:
 include/pros/optical.h:
 include/pros/rotation.hpp:
 include/pros/rotation.h:
+include/pros/rtos.hpp:
 include/pros/screen.hpp:
 include/pros/screen.h:
 include/pros/vision.hpp:
 include/pros/vision.h:
 include/pros/link.hpp:
 include/pros/link.h:
+include/675E/constants.h:
+include/main.h:
 include/675E/driver_control.h:
 include/675E/helper_functions.h:
 include/675E/match_autonomous.h:
@@ -244,7 +245,6 @@ include/675E/programming_skills.h:
 include/675E/robot_config.h:
 include/EZ-Template/api.hpp:
 include/EZ-Template/PID.hpp:
-include/EZ-Template/util.hpp:
 include/EZ-Template/auton.hpp:
 include/EZ-Template/auton_selector.hpp:
 include/EZ-Template/drive/drive.hpp:

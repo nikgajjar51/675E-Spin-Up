@@ -8,11 +8,11 @@ void initialize() {
   pros::delay(500);
   chassis.toggle_modify_curve_with_controller(false);
   chassis.set_active_brake(00);
-  chassis.set_curve_default(2, 2);
+  chassis.set_curve_default(8, 8);
   chassis_default_constants();
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
-      // Auton("Programming Skills 1\n Right Side", programming_skills_1),
+      Auton("Programming Skills\n Left Side", programming_skills),
       // Auton("Programming Skills 2\n Left Side", programming_skills_2),
       // Auton("Right Side\nAWP/n 2 Preloads", right_side_autonomous_win_point),
       Auton("Left Side\nAWP/n 2 Preloads", left_side_autonomous_win_point),
@@ -23,7 +23,7 @@ void initialize() {
   });
   chassis.initialize();
   ez::as::initialize();
-  ez::as::limit_switch_lcd_initialize(&auton_selector_button);
+  //ez::as::limit_switch_lcd_initialize(&auton_selector_button);
 }
 void disabled() {}
 void competition_initialize() {}

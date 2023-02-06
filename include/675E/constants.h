@@ -1,5 +1,6 @@
 #pragma once
 #include "api.h"
+// Auton Constants
 extern const int drive_speed, turn_speed, swerve_speed;
 extern const double low_speed_multiplier, normal_speed_multiplier,
     high_speed_multiplier, balls_to_the_walls;
@@ -14,6 +15,8 @@ extern double flywheel_speeds[flywheel_smooth_size], flywheel_kP, flywheel_kI,
 
 extern int current_tongue_up_speed;
 extern const int tongue_high_speed, tongue_low_speed;
+// Intake Constants
+extern const int intake_in_speed, intake_out_speed;
 
 // Indexer Constants
 extern const int indexer_fall_time, indexer_rise_time;

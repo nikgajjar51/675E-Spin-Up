@@ -57,8 +57,7 @@ void flywheel_pid_control() {
 }
 void indexer_control() {
   while (true) {
-    if (master.get_digital(indexer_button) && is_flywheel_running &&
-        abs(round(flywheel.get_actual_velocity() / 10) * 60) > 2200) {
+    if (master.get_digital(indexer_button)) {
       index_count(1);
     }
     delay(ez::util::DELAY_TIME);
@@ -67,12 +66,9 @@ void indexer_control() {
 void intake_control() {
   while (true) {
     if (master.get_digital(intake_in_button)) {
-      // intake_power(100);
-      intake.move_velocity(600);
+      intake_power(intake_in_speed);
     } else if (master.get_digital(intake_out_button)) {
-      //intake_power(-33);
-      intake.move_velocity(-200);
-
+      intake_power(intake_out_speed);
     } else {
       intake.move_velocity(0);
     }
@@ -97,14 +93,12 @@ void drive_lock_control() {
       drive_lock_type = "Hold ";
       chassis.set_drive_brake(E_MOTOR_BRAKE_HOLD);
       chassis.set_active_brake(0.0);
-      master.rumble("-");
     } else {
       drive_lock_toggle = !drive_lock_toggle;
       drive_lock_type = "Coast";
       chassis.set_drive_brake(E_MOTOR_BRAKE_COAST);
       chassis.reset_drive_sensor();
       chassis.set_active_brake(0.1);
-      master.rumble("..");
     }
   }
 }
