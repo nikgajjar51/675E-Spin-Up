@@ -1,3 +1,4 @@
+#include "EZ-Template/auton.hpp"
 #include "constants.h"
 #include "main.h"
 std::string alliance_color;
@@ -63,23 +64,14 @@ void flywheel_aysnc_pid_control(int target_speed) {
   std::cout << endl << endl << "new power:" << endl << endl;
   flywheel_pid(target_speed);
 }
-void alliance_selector_function() {
-  if (alliance_selector_button.get_new_press()) {
-    if (alliance_color_toggle) {
-      alliance_color_toggle = !alliance_color_toggle;
-      alliance_color = "Red";
-      master.clear();
-      master.set_text(0, 0, alliance_color);
-
-    } else {
-      alliance_color_toggle = !alliance_color_toggle;
-      alliance_color = "Blue";
-      master.clear();
-      master.set_text(0, 0, alliance_color);
-    }
+void autonomous_timer() {}
+void disabled_data_export() {
+  while (true) {
+    master.print(1, 0, "Driver: %s", driver);
+    delay(50);
   }
 }
-void controller_data_export() {
+void driver_data_export() {
   while (true) {
     master.print(0, 0, "Up Speed: %i", current_tongue_up_speed);
     pros::delay(50);
@@ -88,5 +80,42 @@ void controller_data_export() {
     pros::delay(50);
     master.print(2, 0, "Fly Temp: %i", get_flywheel_temp());
     pros::delay(250);
+  }
+}
+void autonomous_data_export() {
+  while (true) {
+    master.print(0, 0, "Time:: %i", driver);
+    pros::delay(50);
+    master.print(1, 0, "Fly Speed: %f",
+                 abs(round(flywheel.get_actual_velocity() / 10) * 60));
+    pros::delay(50);
+    master.print(2, 0, "Fly Temp: %i", get_flywheel_temp());
+    pros::delay(250);
+  }
+}
+
+void Endgame_Fire(void *) {
+  double startTime, skillsTime = 60, matchTime = 105, deployTime, driveTime;
+  bool wasDisabled = true;
+  bool depoly_endgame = false;
+  if (wasDisabled) {
+    startTime = pros::millis();
+  }
+  if (ez::as::auton_selector.current_auton_page == 0) {
+    driveTime = matchTime;
+  }
+  if (ez::as::auton_selector.current_auton_page == 1) {
+    driveTime = skillsTime;
+  }
+  deployTime = driveTime * 1000 - 10000;
+  while (true) {
+    if ((pros::millis() - startTime >= deployTime)) {
+      // controller master.print(2,0,"valueTest"); unlocks the endgame
+      depoly_endgame = true;
+      pros::delay(20);
+    }
+    if (depoly_endgame == true) {
+      pros::delay(20);
+    }
   }
 }

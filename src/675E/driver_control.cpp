@@ -11,16 +11,28 @@ controller_digital_e_t intake_in_button = E_CONTROLLER_DIGITAL_L1;
 controller_digital_e_t intake_out_button = E_CONTROLLER_DIGITAL_L2;
 controller_digital_e_t drive_lock_button = E_CONTROLLER_DIGITAL_RIGHT;
 void driver_switcher() {
-  while (true) {
-    if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_A)) {
-      if (driver == "Benny") {
-        driver = "Rohan";
-      } else {
-        driver = "Benny";
-      }
+  if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_A)) {
+    if (driver == "Benny") {
+      driver = "Rohan";
+      chassis.set_curve_default(8, 8);
+      flywheel_toggle_button = E_CONTROLLER_DIGITAL_R2;
+      tongue_toggle_button = E_CONTROLLER_DIGITAL_LEFT;
+      tongue_speed_button = E_CONTROLLER_DIGITAL_UP;
+      indexer_button = E_CONTROLLER_DIGITAL_R1;
+      intake_in_button = E_CONTROLLER_DIGITAL_L1;
+      intake_out_button = E_CONTROLLER_DIGITAL_L2;
+      drive_lock_button = E_CONTROLLER_DIGITAL_RIGHT;
+    } else {
+      driver = "Benny";
+      chassis.set_curve_default(2, 2);
+      flywheel_toggle_button = E_CONTROLLER_DIGITAL_R2;
+      tongue_toggle_button = E_CONTROLLER_DIGITAL_LEFT;
+      tongue_speed_button = E_CONTROLLER_DIGITAL_UP;
+      indexer_button = E_CONTROLLER_DIGITAL_R1;
+      intake_in_button = E_CONTROLLER_DIGITAL_L1;
+      intake_out_button = E_CONTROLLER_DIGITAL_L2;
+      drive_lock_button = E_CONTROLLER_DIGITAL_RIGHT;
     }
-    master.print(2, 0, "Driver: %s", driver);
-    delay(50);
   }
 }
 void flywheel_pid_control() {

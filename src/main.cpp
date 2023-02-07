@@ -13,8 +13,6 @@ void initialize() {
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
       Auton("Programming Skills\n Left Side", programming_skills),
-      // Auton("Programming Skills 2\n Left Side", programming_skills_2),
-      // Auton("Right Side\nAWP/n 2 Preloads", right_side_autonomous_win_point),
       Auton("Left Side\nAWP/n 2 Preloads", left_side_autonomous_win_point),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_2),
