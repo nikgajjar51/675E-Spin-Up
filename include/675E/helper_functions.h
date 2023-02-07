@@ -14,4 +14,6 @@ void index_count(int count);
 void flywheel_pid(double target_speed);
 void flywheel_aysnc_pid_control(int target_speed);
 void alliance_selector_function();
-void controller_data_export();
+void disabled_data_export();
+void autonomous_data_export();
+void driver_data_export();
