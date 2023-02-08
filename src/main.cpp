@@ -1,6 +1,4 @@
 #include "main.h"
-#include "675E/test_autonomous.h"
-#include "EZ-Template/auton_selector.hpp"
 
 Drive chassis({-13, -12, -11}, {19, 18, 17}, 21, 3.25, 600, 1.667);
 void initialize() {
@@ -9,19 +7,18 @@ void initialize() {
   ez::print_ez_template();
   pros::delay(500);
   chassis.toggle_modify_curve_with_controller(false);
-  chassis.set_active_brake(00);
+  chassis.set_active_brake(0);
   chassis.set_curve_default(8, 8);
   chassis_default_constants();
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
-      Auton("Drive Example", drive_example),
-      Auton("Turn Example", turn_example),
+      //Auton("Drive Example", drive_example),
+      //Auton("Turn Example", turn_example),
       Auton("Programming Skills\n 2 Preloads", programming_skills),
       Auton("Left Side\nAWP/n 2 Preloads", left_side_autonomous_win_point),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_1),
       Auton("Right Side\nNo Preloads\n3 Scored Disks", right_side_2),
       Auton("Right Side\n2 Preloads\n5 Scored Disks", right_side_3),
-      Auton("Left Side\n0 Preloads\n6 Scored Disks\n2 Rollers", left_side_4),
   });
   chassis.initialize();
   ez::as::initialize();
@@ -30,7 +27,6 @@ void initialize() {
 void disabled() {}
 void competition_initialize() {}
 void autonomous() {
-  master.clear();
   chassis.reset_pid_targets();
   chassis.reset_gyro();
   chassis.reset_drive_sensor();
@@ -41,7 +37,7 @@ void opcontrol() {
   pros::Task indexer_task(indexer_control);
   pros::Task intake_task(intake_control);
   pros::Task endgame_task(endgame_control);
-  // pros::Task driver_data_export_task(driver_data_export);
+  pros::Task driver_data_export_task(driver_data_export);
   chassis.set_drive_brake(pros::E_MOTOR_BRAKE_COAST);
   flywheel.set_brake_mode(E_MOTOR_BRAKE_COAST);
   intake.set_brake_mode(E_MOTOR_BRAKE_COAST);

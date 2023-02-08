@@ -28,7 +28,7 @@ double flywheel_integral = 0;
 double flywheel_error = 0;
 double flywheel_speed = 0;
 double flywheel_current_velocity = 0;
-int current_tongue_up_speed;
+int current_tongue_up_speed = tongue_high_speed;
 const int tongue_high_speed = 7500, tongue_low_speed = 7000;
 // Intake Constants
 const int intake_in_speed = 100;

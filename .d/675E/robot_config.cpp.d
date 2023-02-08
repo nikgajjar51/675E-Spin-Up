@@ -78,9 +78,10 @@ bin/675E/robot_config.cpp.o: src/675E/robot_config.cpp include/main.h \
  include/pros/vision.h include/pros/link.hpp include/pros/link.h \
  include/675E/driver_control.h include/675E/helper_functions.h \
  include/675E/match_autonomous.h include/675E/programming_skills.h \
- include/675E/robot_config.h include/EZ-Template/api.hpp \
- include/EZ-Template/PID.hpp include/EZ-Template/util.hpp \
- include/EZ-Template/auton.hpp include/EZ-Template/auton_selector.hpp \
+ include/675E/robot_config.h include/675E/test_autonomous.h \
+ include/EZ-Template/api.hpp include/EZ-Template/PID.hpp \
+ include/EZ-Template/util.hpp include/EZ-Template/auton.hpp \
+ include/EZ-Template/auton_selector.hpp \
  include/EZ-Template/drive/drive.hpp include/EZ-Template/sdcard.hpp \
  include/api.h include/pros/distance.hpp
 include/main.h:
@@ -242,6 +243,7 @@ include/675E/helper_functions.h:
 include/675E/match_autonomous.h:
 include/675E/programming_skills.h:
 include/675E/robot_config.h:
+include/675E/test_autonomous.h:
 include/EZ-Template/api.hpp:
 include/EZ-Template/PID.hpp:
 include/EZ-Template/util.hpp:

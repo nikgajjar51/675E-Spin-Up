@@ -50,7 +50,7 @@ void left_side_autonomous_win_point() {
   pros::delay(300);
   index_count(1);
   pros::delay(300);
-  // Drive away from the auton line 
+  // Drive away from the auton line
   chassis.set_drive_pid(10, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   flywheel_power(0);
@@ -122,7 +122,7 @@ void right_side_autonomous_win_point() {
 }
 /* Right Side 1
  * No Preloads
- * 3 scored disks, no Rollers
+ * 3 scored disks, No Rollers
  */
 void right_side_1() {
   intake_power(100);
@@ -152,51 +152,9 @@ void right_side_1() {
 }
 /* Right Side 2
  * 2 Preloads
- * 5 scored disks, no rollers
- */
-void right_side_2() {
-  intake_power(100);
-  chassis.set_drive_pid(28, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(-42, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  flywheel_aysnc_pid_control(7000);
-  chassis.set_drive_pid(40, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(-5, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(-8, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  intake_power(0);
-  index_count(1);
-  pros::delay(500);
-  index_count(1);
-  pros::delay(500);
-  index_count(1);
-  pros::delay(500);
-  index_count(1);
-  pros::delay(1000);
-  chassis.set_drive_pid(8, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(-42, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  intake_power(-100);
-  chassis.set_drive_pid(70, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(-90, turn_speed * high_speed_multiplier);
-  intake_power(-25);
-  chassis.set_drive_pid(8, drive_speed * normal_speed_multiplier);
-  chassis.wait_drive();
-  pros::delay(500);
-  intake_power(0);
-}
-/* Right Side 3
- * 2 Preloads
  * 5 scored disks, 1 roller
  */
-void right_side_3() {
+void right_side_2() {
   intake_power(100);
   flywheel_aysnc_pid_control(5500);
   chassis.set_drive_pid(24, drive_speed * high_speed_multiplier);
@@ -239,12 +197,10 @@ void right_side_3() {
   pros::delay(1000);
   flywheel_aysnc_pid_control(0);
 }
-/* Right Side 4
- * 2 Preloads
- * 8 scored disks, 2 rollers
+/* Right Side 3
  */
-void right_side_4() {}
+void right_side_3() {}
+/* Right Side 4
+ */
 void left_side_1() {}
 void left_side_2() {}
-void left_side_3() {}
-void left_side_4() {}
