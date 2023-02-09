@@ -56,7 +56,7 @@ void flywheel_pid(double target_speed) {
   std::cout << (int)(current_velocity) << "\t" << (int)flywheel_error << "\t"
             << (int)flywheel_integral << "\t" << (int)flywheel_speed << endl;
 }
-void flywheel_aysnc_pid_control(int target_speed) {
+void flywheel_async_pid_control(int target_speed) {
   flywheel_integral = 0;
   for (int i = 0; i < flywheel_smooth_size; i++) {
     flywheel_speeds[i] = 0;

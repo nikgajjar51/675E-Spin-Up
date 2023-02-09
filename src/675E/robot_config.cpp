@@ -3,12 +3,10 @@
 // V5 Motors
 pros::Motor intake(2, pros::E_MOTOR_GEARSET_06, true,
                    pros::E_MOTOR_ENCODER_ROTATIONS);
-pros::Motor flywheel(6, pros::E_MOTOR_GEARSET_06, true,
-                     pros::E_MOTOR_ENCODER_ROTATIONS);
+pros::Motor flywheel(6, true);
 // V5 Sensors
 pros::Distance hopper_distance(17);
 pros::Optical roller_optical(16);
-pros::Rotation flywheel_rotation(14);
 pros::Vision vision_sensor(5, pros::E_VISION_ZERO_TOPLEFT);
 // 3-Wire Legacy
 // Single Acting
