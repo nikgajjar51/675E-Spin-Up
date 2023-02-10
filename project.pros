@@ -331,8 +331,8 @@
       }
     },
     "upload_options": {
-      "description": "does the intake still work?",
-      "icon": "alien",
+      "description": "does the intake still work",
+      "icon": "X",
       "slot": 2
     }
   }
