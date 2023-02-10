@@ -1,10 +1,5 @@
 
-#include "constants.h"
 #include "main.h"
-/* Left Side AWP
- * 2 Preloads
- * 8 scored disks, 2 rollers
- */
 void left_side_autonomous_win_point() {
   // Start flywheel
   flywheel_power(99);
@@ -73,10 +68,6 @@ void left_side_autonomous_win_point() {
   // Spin roller to other color
   intake.move_relative(1, 600);
 }
-/* Right Side AWP
- * 2 Preloads
- * 5 scored disks, 2 rollers
- */
 void right_side_autonomous_win_point() {
   intake_power(75);
   flywheel_async_pid_control(7000);
@@ -120,10 +111,6 @@ void right_side_autonomous_win_point() {
   chassis.set_drive_pid(-5, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
 }
-/* Right Side 1
- * No Preloads
- * 3 scored disks, No Rollers
- */
 void right_side_1() {
   intake_power(100);
   chassis.set_drive_pid(28, drive_speed * normal_speed_multiplier);
@@ -150,10 +137,6 @@ void right_side_1() {
   pros::delay(500);
   flywheel_async_pid_control(0);
 }
-/* Right Side 2
- * 2 Preloads
- * 5 scored disks, 1 roller
- */
 void right_side_2() {
   intake_power(100);
   flywheel_async_pid_control(5500);
@@ -197,10 +180,5 @@ void right_side_2() {
   pros::delay(1000);
   flywheel_async_pid_control(0);
 }
-/* Right Side 3
- */
-void right_side_3() {}
-/* Right Side 4
- */
 void left_side_1() {}
 void left_side_2() {}

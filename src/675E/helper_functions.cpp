@@ -1,11 +1,6 @@
-#include "EZ-Template/auton.hpp"
-#include "constants.h"
 #include "main.h"
-std::string alliance_color;
-bool alliance_color_toggle = false;
-pros::c::optical_rgb_s_t roller_optical_RGB = roller_optical.get_rgb();
-const int red_threshold = 25, blue_threshold = 25;
 int get_flywheel_temp() { return flywheel.get_temperature(); }
+int get_intake_temp() { return intake.get_temperature(); }
 void flywheel_power(double percent) { flywheel.move(120 * percent); }
 void intake_power(double percent) { intake.move(120 * percent); }
 double mean(double x, double y) { return ((x + y) / 2); }
@@ -64,58 +59,37 @@ void flywheel_async_pid_control(int target_speed) {
   std::cout << endl << endl << "new power:" << endl << endl;
   flywheel_pid(target_speed);
 }
-void autonomous_timer() {}
 void disabled_data_export() {
   while (true) {
-    master.print(1, 0, "Driver: %s", driver);
-    delay(50);
+    master.print(0, 0, "Driver: %s", driver);
+    pros::delay(50);
+    master.print(2, 0, "Alliance: %s", alliance);
+    pros::delay(50);
   }
 }
-void driver_data_export() {
+void data_export() {
   while (true) {
     master.print(0, 0, "Up Speed: %i", current_tongue_up_speed);
     pros::delay(50);
     master.print(1, 0, "Fly Speed: %f",
                  abs(round(flywheel.get_actual_velocity() / 10) * 60));
     pros::delay(50);
-    master.print(2, 0, "Fly Temp: %i", get_flywheel_temp());
-    pros::delay(250);
+    master.print(2, 0, "Fly: %i | Int: %i", get_flywheel_temp(),
+                 get_intake_temp());
+    pros::delay(50);
   }
 }
-void autonomous_data_export() {
-  while (true) {
-    master.print(0, 0, "Time:: %i", driver);
-    pros::delay(50);
-    master.print(1, 0, "Fly Speed: %f",
-                 abs(round(flywheel.get_actual_velocity() / 10) * 60));
-    pros::delay(50);
-    master.print(2, 0, "Fly Temp: %i", get_flywheel_temp());
-    pros::delay(250);
+void turn_roller_to(std::string color) {
+  int up_threshold, down_threshold;
+  roller_optical.set_led_pwm(100);
+  if (color == "Red") {
+    up_threshold = 340, down_threshold = 20;
+  } else if (color == "Blue") {
+    up_threshold = 270, down_threshold = 210;
   }
-}
-
-void Endgame_Fire(void *) {
-  double startTime, skillsTime = 60, matchTime = 105, deployTime, driveTime;
-  bool wasDisabled = true;
-  bool depoly_endgame = false;
-  if (wasDisabled) {
-    startTime = pros::millis();
-  }
-  if (ez::as::auton_selector.current_auton_page == 0) {
-    driveTime = matchTime;
-  }
-  if (ez::as::auton_selector.current_auton_page == 1) {
-    driveTime = skillsTime;
-  }
-  deployTime = driveTime * 1000 - 10000;
-  while (true) {
-    if ((pros::millis() - startTime >= deployTime)) {
-      // controller master.print(2,0,"valueTest"); unlocks the endgame
-      depoly_endgame = true;
-      pros::delay(20);
-    }
-    if (depoly_endgame == true) {
-      pros::delay(20);
-    }
+  while (roller_optical.get_hue() > up_threshold ||
+         roller_optical.get_hue() < down_threshold) {
+    intake_power(100);
+    pros::delay(ez::util::DELAY_TIME);
   }
 }

@@ -1,6 +1,5 @@
 #include "main.h"
-using namespace pros;
-std::string drive_lock_type, control_type, driver = "Rohan";
+std::string drive_lock_type, driver = "Rohan", alliance = "Red";
 bool drive_lock_toggle = false, is_flywheel_running = false,
      is_tongue_up = false;
 controller_digital_e_t flywheel_toggle_button = E_CONTROLLER_DIGITAL_R2;
@@ -10,7 +9,7 @@ controller_digital_e_t indexer_button = E_CONTROLLER_DIGITAL_R1;
 controller_digital_e_t intake_in_button = E_CONTROLLER_DIGITAL_L1;
 controller_digital_e_t intake_out_button = E_CONTROLLER_DIGITAL_L2;
 controller_digital_e_t drive_lock_button = E_CONTROLLER_DIGITAL_RIGHT;
-void driver_switcher() {
+void driver_selector() {
   if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_A)) {
     if (driver == "Benny") {
       driver = "Rohan";
@@ -35,6 +34,15 @@ void driver_switcher() {
     }
   }
 }
+void alliance_selector() {
+  if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) {
+    if (alliance == "Red") {
+      alliance = "Blue";
+    } else {
+      alliance = "Red";
+    }
+  }
+}
 void flywheel_pid_control() {
   if (master.get_digital_new_press(flywheel_toggle_button)) {
     is_flywheel_running = !is_flywheel_running;
@@ -44,26 +52,30 @@ void flywheel_pid_control() {
     }
     std::cout << endl << endl << "new power:" << endl << endl;
   }
-  if (master.get_digital_new_press(tongue_toggle_button)) {
-    is_tongue_up = !is_tongue_up;
-  }
-  if (is_flywheel_running) {
-    if (is_tongue_up) {
-      flywheel_pid(7000);
-      tongue_pneum.set_value(false);
-    } else {
-      flywheel_pid(current_tongue_up_speed);
-      tongue_pneum.set_value(true);
+}
+void tongue_control() {
+  while (true) {
+    if (master.get_digital_new_press(tongue_toggle_button)) {
+      is_tongue_up = !is_tongue_up;
     }
-  } else {
-    flywheel_power(0);
-  }
-  if (master.get_digital_new_press(tongue_speed_button)) {
-    if (current_tongue_up_speed == tongue_high_speed) {
-      current_tongue_up_speed = tongue_low_speed;
+    if (is_flywheel_running) {
+      if (is_tongue_up) {
+        flywheel_pid(7000);
+        tongue_pneum.set_value(false);
+      } else {
+        flywheel_pid(current_tongue_up_speed);
+        tongue_pneum.set_value(true);
+      }
+    } else {
+      flywheel_power(0);
+    }
+    if (master.get_digital_new_press(tongue_speed_button)) {
+      if (current_tongue_up_speed == tongue_high_speed) {
+        current_tongue_up_speed = tongue_low_speed;
 
-    } else if (current_tongue_up_speed != tongue_high_speed) {
-      current_tongue_up_speed = tongue_high_speed;
+      } else if (current_tongue_up_speed != tongue_high_speed) {
+        current_tongue_up_speed = tongue_high_speed;
+      }
     }
   }
 }

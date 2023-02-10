@@ -1,18 +1,18 @@
 #include "main.h"
 void programming_skills() {
-  // Start the flywheel
+  // Start the Flywheel
   flywheel_async_pid_control(6000);
   // Set the tongue up
   tongue_pneum.set_value(true);
-  // Start the intake to turn the roller
-  intake_power(10);
   // Drive towards the roller
   chassis.set_drive_pid(5, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
+  // Roller to Red
+  turn_roller("Red");
   // Drive away from the roller
   chassis.set_drive_pid(-6, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  // Increase intake speed to intake a disk
+  // Start intake
   intake_power(100);
   // Turn towards singular disk
   chassis.set_turn_pid(110, turn_speed * high_speed_multiplier);
@@ -23,11 +23,11 @@ void programming_skills() {
   // Turn towards the roller
   chassis.set_turn_pid(90, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  // Decrease the intake speed to turn the roller
-  intake_power(10);
   // Drive towards the roller
   chassis.set_drive_pid(15, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
+  // Roller to Red
+  turn_roller("Red");
   // Drive away from the roller
   chassis.set_drive_pid(-9, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
