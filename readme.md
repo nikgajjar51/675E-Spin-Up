@@ -9,108 +9,33 @@ This is the Code Repository for the VEX VRC Team, 675E (Robodragons Echo).
 
 This repository will host all of the code as well as active changes and logs for each competition revision.
 
-## Members and Team Structure (Insert Team Picture Below)
+## Members and Team Structure
 
 * Leadership
-
   * Benny Z
   * Rohan A
   * Nik G
-
 * Coders
-
   * Main coder: Nik G
   * Secondary Coder: BanAhn D
   * Mentees: Neal J, Calvin T, Benny Z
 * CAD and Design
-
   * Main CAD-ders: Nik G and LanAhn D
   * Mentees: Benny Z
 * Builders
-
   * Main Builder: Benny Z
-  * Calvin T, LanAhn D, BanAhn D, Neal J, Nik G, Joseph T
+  * Calvin T, LanAhn D, BanAhn D, Neal J, Nik G
 * Notebookers
-
-  * Nik G, Benny Z
-
+  * Nik G, LanAhn D
 * Driver
-  * Primary: Rohan A
-  * Secondary: BanAhn D
+  * Primary: Benny Z
+  * Secondary: Rohan A
 * Coach and Strategist:
-  * Calvin T
-
-## [Tucker High School Competition](https://www.robotevents.com/RE-VRC-22-8924.html) - 10/15/2022
-
-* Drivetrain:
-  * 6 Motor, 333 RPM on 4, 3.25 omni wheels, with a 3.25 traction wheel in the center of each side
-  * No odometry pods; using built-in motor encoders for PID and tracking
-* Intake / Rollers:
-  * 600 RPM directly chained to the driven shafts
-* Flywheel:
-  * 600 RPM geared to 3600 RPM
-  * 4 in flexhweel with 36 tooth gear in the middle
-* Indexer:
-  * Single Acting Cylinder on lever arm
-  * Lever arm for Torque
-
-## [Paul Duke High School Competition](https://www.robotevents.com/RE-VRC-22-8930.html) - 10/29/2022
-
-* Drivetrain:
-  * No Changes
-* Intake / Rollers:
-  * No Changes
-* Flywheel:
-  * No Changes
-* Indexer:
-  * Double Acting Cylinder on push in/out
-
-## [Cross Keys High School Tournament](https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-VRC-22-9867.html) - 11/3/2022
-
-* Drivetrain:
-  * Rebuilt and just cleaned up
-  * had to fix some metal-on-metal contact
-* Intake / Rollers:
-  * Switched to 3 in flexhweels on a High Strength Shaft
-* Flywheel:
-  * Direct drive, 3600 RPM flywheel
-* Indexer:
-  * Frosted Polycarbonate for less friction
-
-## [GA TSA FLC Meet](https://www.robotevents.com/RE-VRC-22-9580.html) - 11/11/2022
-
-* Drivetrain:
-  * Minor fixes
-* Intake / Rollers:
-  * Minor fixes
-* Flywheel:
-  * Minor fixes
-* Indexer:
-  * Minor fixes
-* Expansion
-  * We had one...
-
-## [South Forsyth High School Tournament](https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-VRC-22-8882.html) - 12/17/2022
-
-* Drivetrain:
-  * Minor fixes
-* Intake / Rollers:
-  * Minor fixes
-* Flywheel:
-  * Minor fixes
-* Indexer:
-  * New Design - Lever
-* Expansion
-  * Half-Functional???
-
+  * Calvin T, Sammy
 ## Current Ports
-
 * V5 Smart Devices:
-  * Inertial:
-  * Optical:
+  * Inertial: 21
   * Radio/Controller: Any
-  * Vision: 5
-
 * V5 Smart Motors:
   * Drive Left Front: 11 (Reversed)
   * Drive Left Middle: 12 (Reversed)
@@ -120,13 +45,12 @@ This repository will host all of the code as well as active changes and logs for
   * Drive Right Back: 19
   * Intake: 2
   * Flywheel: 6
-
 * V5 3 Wire Devices:
-  * A: Line Sensor (Intake Bottom)
-  * B: Line Sensor (Intake Top)
-  * C: Line Sensor (Hopper Bottom)
-  * D: Button (Alliance Selector)
+  * A: None
+  * B: None
+  * C: None
+  * D: None
   * E: Pneumatic (Expansion)
   * F: Pneumatic (Indexer)
   * G: Pneumatic (Tongue)
-  * H: None
+  * H: Button (Alliance Selector)
