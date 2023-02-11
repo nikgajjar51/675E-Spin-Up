@@ -1,3 +1,4 @@
+#include "constants.h"
 #include "main.h"
 int get_flywheel_temp() { return flywheel.get_temperature(); }
 int get_intake_temp() { return intake.get_temperature(); }
@@ -59,37 +60,31 @@ void flywheel_async_pid_control(int target_speed) {
   std::cout << endl << endl << "new power:" << endl << endl;
   flywheel_pid(target_speed);
 }
-void disabled_data_export() {
-  while (true) {
-    master.print(0, 0, "Driver: %s", driver);
-    pros::delay(50);
-    master.print(2, 0, "Alliance: %s", alliance);
-    pros::delay(50);
-  }
-}
 void data_export() {
   while (true) {
-    master.print(0, 0, "Up Speed: %i", current_tongue_up_speed);
+    master.print(0, 0, "Alliance: %s", alliance);
     pros::delay(50);
     master.print(1, 0, "Fly Speed: %f",
-                 abs(round(flywheel.get_actual_velocity() / 10) * 60));
+                 abs(flywheel.get_actual_velocity() / 10) * 60);
     pros::delay(50);
     master.print(2, 0, "Fly: %i | Int: %i", get_flywheel_temp(),
                  get_intake_temp());
-    pros::delay(50);
+    pros::delay(250);
   }
 }
 void turn_roller_to(std::string color) {
   int up_threshold, down_threshold;
   roller_optical.set_led_pwm(100);
   if (color == "Red") {
-    up_threshold = 340, down_threshold = 20;
+    up_threshold = 225, down_threshold = 245;
   } else if (color == "Blue") {
-    up_threshold = 270, down_threshold = 210;
+    up_threshold = 20, down_threshold = 0;
   }
-  while (roller_optical.get_hue() > up_threshold ||
-         roller_optical.get_hue() < down_threshold) {
-    intake_power(100);
+  while (roller_optical.get_hue() < up_threshold ||
+         roller_optical.get_hue() > down_threshold) {
+    intake_power(25);
     pros::delay(ez::util::DELAY_TIME);
   }
+  intake_power(0);
+  roller_optical.set_led_pwm(0);
 }

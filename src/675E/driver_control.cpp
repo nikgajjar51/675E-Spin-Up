@@ -1,7 +1,7 @@
 #include "main.h"
 std::string drive_lock_type, driver = "Rohan", alliance = "Red";
 bool drive_lock_toggle = false, is_flywheel_running = false,
-     is_tongue_up = false;
+     is_tongue_up = true;
 controller_digital_e_t flywheel_toggle_button = E_CONTROLLER_DIGITAL_R2;
 controller_digital_e_t tongue_toggle_button = E_CONTROLLER_DIGITAL_LEFT;
 controller_digital_e_t tongue_speed_button = E_CONTROLLER_DIGITAL_UP;
@@ -44,6 +44,8 @@ void alliance_selector() {
   }
 }
 void flywheel_pid_control() {
+  flywheel.set_gearing(pros::E_MOTOR_GEARSET_06);
+  flywheel.set_encoder_units(pros::E_MOTOR_ENCODER_ROTATIONS);
   if (master.get_digital_new_press(flywheel_toggle_button)) {
     is_flywheel_running = !is_flywheel_running;
     flywheel_integral = 0;
@@ -59,24 +61,16 @@ void tongue_control() {
       is_tongue_up = !is_tongue_up;
     }
     if (is_flywheel_running) {
+      flywheel_pid(7400);
       if (is_tongue_up) {
-        flywheel_pid(7000);
         tongue_pneum.set_value(false);
       } else {
-        flywheel_pid(current_tongue_up_speed);
         tongue_pneum.set_value(true);
       }
     } else {
       flywheel_power(0);
     }
-    if (master.get_digital_new_press(tongue_speed_button)) {
-      if (current_tongue_up_speed == tongue_high_speed) {
-        current_tongue_up_speed = tongue_low_speed;
-
-      } else if (current_tongue_up_speed != tongue_high_speed) {
-        current_tongue_up_speed = tongue_high_speed;
-      }
-    }
+    delay(ez::util::DELAY_TIME);
   }
 }
 void indexer_control() {
@@ -96,7 +90,7 @@ void intake_control() {
     } else {
       intake.move_velocity(0);
     }
-    delay(20);
+    delay(ez::util::DELAY_TIME);
   }
 }
 void endgame_control() {
@@ -107,7 +101,7 @@ void endgame_control() {
         master.get_digital(E_CONTROLLER_DIGITAL_A)) {
       expansion_pneum.set_value(true);
     }
-    delay(20);
+    delay(ez::util::DELAY_TIME);
   }
 }
 void drive_lock_control() {

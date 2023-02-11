@@ -14,4 +14,4 @@ void flywheel_pid(double target_speed);
 void flywheel_async_pid_control(int target_speed);
 void data_export();
 void disabled_data_export();
-void turn_roller(std::string color);
+void turn_roller_to(std::string color);

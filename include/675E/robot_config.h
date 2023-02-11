@@ -2,6 +2,7 @@
 // V5 Motors
 extern pros::Motor intake;
 extern pros::Motor flywheel;
+extern pros::Motor auton_flywheel;
 // V5 Optical
 extern pros::Optical roller_optical;
 // 3-Wire Legacy

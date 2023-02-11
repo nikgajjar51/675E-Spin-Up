@@ -12,9 +12,8 @@ void chassis_exit_conditions();
 extern double flywheel_speeds[flywheel_smooth_size], flywheel_kP, flywheel_kI,
     flywheel_integral, flywheel_error, flywheel_speed,
     flywheel_current_velocity;
-
-extern int current_tongue_up_speed;
-extern const int tongue_high_speed, tongue_low_speed;
+extern const int tongue_up_speed, tongue_down_speed;
+extern int current_speed;
 // Intake Constants
 extern const int intake_in_speed, intake_out_speed;
 
