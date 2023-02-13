@@ -1,6 +1,7 @@
 #include "main.h"
 Drive chassis({-13, -12, -11}, {19, 18, 17}, 21, 3.25, 600, 1.667);
 void initialize() {
+  expansion_pneum.set_value(false);
   pros::Task data_export_task(data_export);
   master.clear();
   ez::print_ez_template();
@@ -11,15 +12,7 @@ void initialize() {
   chassis_default_constants();
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
-      Auton("Left Side AWP/n 2 Preloads", left_side_autonomous_win_point),
-      Auton("Right Side\nNo Preloads\n3 Scored Disks, No Roller", right_side_1),
-      Auton("Right Side\n2 Preloads\n3 Scored Disks, 1 Roller", right_side_2),
-      Auton("Right Side\n2 Preloads\n6 Scored Disks, No Roller", right_side_3),
       Auton("Right Side\n2 Preloads\n6 Scored Disks, 1 Roller", right_side_4),
-      Auton("Left Side\nNo Preloads\n3 Scored Disks, 1 Roller", left_side_1),
-      Auton("Left Side\n2 Preloads\n3 Scored Disks, 1 Roller", left_side_2),
-      Auton("Left Side\n2 Preloads\n6 Scored Disks, 1 Roller", left_side_3),
-      Auton("Programming Skills\n 2 Preloads", programming_skills),
       Auton("No Auton", no_auton),
 
   });

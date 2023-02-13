@@ -1,6 +1,8 @@
 #include "main.h"
 void programming_skills() {
   // Start the Flywheel
+  intake_power(100);
+
   flywheel_pid(7000);
   // Set the tongue up
   tongue_pneum.set_value(true);
@@ -8,28 +10,22 @@ void programming_skills() {
   chassis.set_drive_pid(5, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Roller to Red
-  turn_roller_to("Red");
-  // Drive away from the roller
   chassis.set_drive_pid(-6, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  // Start intake
-  intake_power(100);
   // Turn towards singular disk
-  chassis.set_turn_pid(135, turn_speed * high_speed_multiplier);
+  chassis.set_turn_pid(110, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Drive to intake disk
-  chassis.set_drive_pid(20, drive_speed * normal_speed_multiplier);
+  chassis.set_drive_pid(25, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   // Turn towards the roller
   chassis.set_turn_pid(90, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Drive towards the roller
-  chassis.set_drive_pid(15, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(12, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Roller to Red
-  turn_roller_to("Red");
-  // Drive away from the roller
-  chassis.set_drive_pid(-9, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(-8, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Turn away towards high goal
   chassis.set_turn_pid(0, turn_speed * high_speed_multiplier);
@@ -52,7 +48,7 @@ void programming_skills() {
   chassis.wait_drive();
   intake_power(100);
   // Drive forward
-  chassis.set_drive_pid(55, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(52, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Increase the flywheel speed
   flywheel_async_pid_control(5500);
@@ -65,7 +61,7 @@ void programming_skills() {
   chassis.set_drive_pid(85, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   // Drive reverse to intake the 3 disks
-  chassis.set_drive_pid(-15, drive_speed * normal_speed_multiplier);
+  chassis.set_drive_pid(-25, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   // Turn towards the high goal
   chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
@@ -87,7 +83,7 @@ void programming_skills() {
   chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   // Drive forwards to knock over the 3-stack
-  chassis.set_drive_pid(35, drive_speed * normal_speed_multiplier);
+  chassis.set_drive_pid(45, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   // Drive away from the 3-stack
   chassis.set_drive_pid(-10, drive_speed * normal_speed_multiplier);
@@ -111,5 +107,31 @@ void programming_skills() {
   // Reverse back
   chassis.set_drive_pid(40, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
+  chassis.set_turn_pid(180, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Drive towards the roller
+  chassis.set_drive_pid(5, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Roller to Red
+  chassis.set_drive_pid(-6, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Turn towards singular disk
+  chassis.set_turn_pid(110, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Drive to intake disk
+  chassis.set_drive_pid(25, drive_speed * normal_speed_multiplier);
+  chassis.wait_drive();
+  // Turn towards the roller
+  chassis.set_turn_pid(90, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Drive towards the roller
+  chassis.set_drive_pid(12, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Roller to Red
+  chassis.set_drive_pid(-8, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  // Turn away towards high goal
+  chassis.set_turn_pid(0, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
 }
-void backup_programming_skills(){}
+void backup_programming_skills() {}

@@ -117,18 +117,18 @@ void right_side_autonomous_win_point() {
  */
 void right_side_1() {
   intake_power(100);
-  flywheel_async_pid_control(13500);
+  flywheel_async_pid_control(12000);
   chassis.set_drive_pid(24, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(-42, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_drive_pid(40, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
   chassis.set_drive_pid(-10, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_turn_pid(45, turn_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   intake_power(0);
   index_count(1);
@@ -146,12 +146,10 @@ void right_side_1() {
  */
 void right_side_2() {
   intake_power(100);
-  flywheel_async_pid_control(13500);
-  chassis.set_drive_pid(24, drive_speed * high_speed_multiplier);
+  flywheel_async_pid_control(7000);
+  chassis.set_drive_pid(28, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_turn_pid(203, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(-8, drive_speed * high_speed_multiplier);
+  chassis.set_turn_pid(-30, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   index_count(1);
   pros::delay(700);
@@ -174,16 +172,14 @@ void right_side_2() {
 /*
  * Right Side 3
  * 2 preloads
- * 6 disks, no rollers
+ * 5 disks, no rollers
  */
 void right_side_3() {
   intake_power(100);
-  flywheel_async_pid_control(13500);
-  chassis.set_drive_pid(24, drive_speed * high_speed_multiplier);
+  flywheel_async_pid_control(6000);
+  chassis.set_drive_pid(30, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_turn_pid(203, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(-8, drive_speed * high_speed_multiplier);
+  chassis.set_turn_pid(90, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   index_count(1);
   pros::delay(700);
@@ -191,17 +187,19 @@ void right_side_3() {
   pros::delay(700);
   index_count(1);
   pros::delay(700);
-  chassis.set_turn_pid(-42, turn_speed * high_speed_multiplier);
+  chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(40, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(60, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(-30, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
+  flywheel_async_pid_control(12000);
   chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(-10, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(-12, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   intake_power(0);
+  pros::delay(700);
   index_count(1);
   pros::delay(700);
   index_count(1);
@@ -217,50 +215,20 @@ void right_side_3() {
  */
 void right_side_4() {
   intake_power(100);
-  flywheel_async_pid_control(13500);
-  chassis.set_drive_pid(24, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(30, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_turn_pid(203, turn_speed * high_speed_multiplier);
+  chassis.set_turn_pid(45, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(-8, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  index_count(1);
-  pros::delay(700);
-  index_count(1);
-  pros::delay(700);
-  index_count(1);
-  pros::delay(700);
-  intake_power(0);
   chassis.set_turn_pid(135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(30, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(35, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(180, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(13, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(12, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  turn_roller_to(alliance);
-  chassis.set_drive_pid(-5, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(-12, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_turn_pid(-45, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  intake_power(100);
-  chassis.set_drive_pid(80, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(-10, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  chassis.set_drive_pid(-4, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
-  intake_power(0);
-  index_count(1);
-  pros::delay(700);
-  index_count(1);
-  pros::delay(700);
-  index_count(1);
-  pros::delay(700);
-  flywheel_async_pid_control(0);
 }
 /*
  * Left Side 1
@@ -270,8 +238,9 @@ void right_side_4() {
 void left_side_1() {
   chassis.set_drive_pid(6, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  turn_roller_to(alliance);
-  chassis.set_drive_pid(6, drive_speed * high_speed_multiplier);
+  intake.move_relative(.5, 25);
+  pros::delay(750);
+  chassis.set_drive_pid(-6, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
@@ -280,9 +249,10 @@ void left_side_1() {
   chassis.set_drive_pid(-10, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
   intake_power(100);
-  chassis.set_drive_pid(55, drive_speed * high_speed_multiplier);
+  flywheel_pid(7000);
+  chassis.set_drive_pid(30, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_turn_pid(45, turn_speed * high_speed_multiplier);
+  chassis.set_turn_pid(45, turn_speed * normal_speed_multiplier);
   chassis.wait_drive();
   chassis.set_drive_pid(-10, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
@@ -306,4 +276,14 @@ void left_side_2() {}
  * 2 preloads
  * 6 disks, 1 roller
  */
-void no_auton();
+void left_side_3() {}
+
+void left_side_4() {
+  chassis.set_drive_pid(6, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+  turn_roller_to(alliance);
+  chassis.set_drive_pid(-6, drive_speed * high_speed_multiplier);
+  chassis.wait_drive();
+}
+
+void no_auton() {}

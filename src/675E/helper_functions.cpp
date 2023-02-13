@@ -76,13 +76,14 @@ void turn_roller_to(std::string color) {
   int up_threshold, down_threshold;
   roller_optical.set_led_pwm(100);
   if (color == "Red") {
-    up_threshold = 225, down_threshold = 245;
+    up_threshold = 230, down_threshold = 150;
   } else if (color == "Blue") {
     up_threshold = 20, down_threshold = 0;
   }
   while (roller_optical.get_hue() < up_threshold ||
          roller_optical.get_hue() > down_threshold) {
-    intake_power(25);
+    //intake_power(1);
+    intake.move(10);
     pros::delay(ez::util::DELAY_TIME);
   }
   intake_power(0);

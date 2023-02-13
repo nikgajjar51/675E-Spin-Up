@@ -61,7 +61,7 @@ void tongue_control() {
       is_tongue_up = !is_tongue_up;
     }
     if (is_flywheel_running) {
-      flywheel_pid(7400);
+      flywheel_pid(7600);
       if (is_tongue_up) {
         tongue_pneum.set_value(false);
       } else {
@@ -95,10 +95,10 @@ void intake_control() {
 }
 void endgame_control() {
   while (true) {
-    if (master.get_digital(E_CONTROLLER_DIGITAL_LEFT) &&
-        master.get_digital(E_CONTROLLER_DIGITAL_UP) &&
-        master.get_digital(E_CONTROLLER_DIGITAL_X) &&
-        master.get_digital(E_CONTROLLER_DIGITAL_A)) {
+    if (master.get_digital(E_CONTROLLER_DIGITAL_DOWN) &&
+        master.get_digital(E_CONTROLLER_DIGITAL_RIGHT) &&
+        master.get_digital(E_CONTROLLER_DIGITAL_Y) &&
+        master.get_digital(E_CONTROLLER_DIGITAL_B)) {
       expansion_pneum.set_value(true);
     }
     delay(ez::util::DELAY_TIME);
