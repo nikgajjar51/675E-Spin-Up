@@ -82,7 +82,6 @@ void turn_roller_to(std::string color) {
   }
   while (roller_optical.get_hue() < up_threshold ||
          roller_optical.get_hue() > down_threshold) {
-    //intake_power(1);
     intake.move(10);
     pros::delay(ez::util::DELAY_TIME);
   }
