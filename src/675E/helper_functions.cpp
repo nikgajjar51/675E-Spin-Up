@@ -1,4 +1,3 @@
-#include "constants.h"
 #include "main.h"
 int get_flywheel_temp() { return flywheel.get_temperature(); }
 int get_intake_temp() { return intake.get_temperature(); }
@@ -73,6 +72,7 @@ void data_export() {
   }
 }
 void turn_roller_to(std::string color) {
+  double start_time = pros::millis(), exit_time = 1500;
   int up_threshold, down_threshold;
   roller_optical.set_led_pwm(100);
   if (color == "Red") {
@@ -80,9 +80,10 @@ void turn_roller_to(std::string color) {
   } else if (color == "Blue") {
     up_threshold = 20, down_threshold = 0;
   }
-  while (roller_optical.get_hue() < up_threshold ||
-         roller_optical.get_hue() > down_threshold) {
-    intake.move(10);
+  while ((pros::millis() - start_time >= exit_time) &&
+         (roller_optical.get_hue() < up_threshold &&
+          roller_optical.get_hue() > down_threshold)) {
+    intake.move(50);
     pros::delay(ez::util::DELAY_TIME);
   }
   intake_power(0);

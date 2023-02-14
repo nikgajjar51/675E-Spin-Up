@@ -12,7 +12,7 @@ void initialize() {
   chassis_default_constants();
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
-      Auton("Right Side\n2 Preloads\n6 Scored Disks, 1 Roller", right_side_4),
+      Auton("Prog Skills", programming_skills),
       Auton("No Auton", no_auton),
 
   });

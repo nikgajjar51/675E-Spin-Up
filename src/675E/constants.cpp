@@ -8,8 +8,8 @@ void chassis_default_constants() {
   chassis.set_slew_min_power(60, 60);
   chassis.set_slew_distance(0, 0);
   chassis.set_pid_constants(&chassis.headingPID, 16, 2, 50, 0);
-  chassis.set_pid_constants(&chassis.forward_drivePID, .6, 0,8 , 0);
-  chassis.set_pid_constants(&chassis.backward_drivePID, .6, 0, 8, 0);
+  chassis.set_pid_constants(&chassis.forward_drivePID, .6, 0,7 , 0);
+  chassis.set_pid_constants(&chassis.backward_drivePID, .6, 0, 7, 0);
   chassis.set_pid_constants(&chassis.turnPID, 5, 0.003, 29, 15);
   chassis.set_pid_constants(&chassis.swingPID, 7, 0, 35, 0);
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include "api.h"
 extern std::string drive_lock_type, driver, alliance;
 extern bool drive_lock_toggle, is_flywheel_running, is_tongue_up;

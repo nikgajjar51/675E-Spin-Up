@@ -2,6 +2,7 @@
 layout: Notebook Style
 title: 675E Mini-Notebook and Code
 ---
+[![Build](https://github.com/nikgajjar51/675E-Spin-Up/actions/workflows/main.yml/badge.svg)](https://github.com/nikgajjar51/675E-Spin-Up/actions/workflows/main.yml)
 
 ## Welcome
 
@@ -32,7 +33,9 @@ This repository will host all of the code as well as active changes and logs for
   * Secondary: Rohan A
 * Coach and Strategist:
   * Calvin T, Sammy
+
 ## Current Ports
+
 * V5 Smart Devices:
   * Inertial: 21
   * Radio/Controller: Any
