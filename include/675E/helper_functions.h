@@ -10,6 +10,7 @@ extern double clamp(double val, double max, double min);
 extern int constrain(int value, int min, int max);
 extern double flywheel_get_velocity();
 void index_count(int count);
+void auton_index_count(int count);
 void flywheel_pid(double target_speed);
 void flywheel_async_pid_control(int target_speed);
 void data_export();

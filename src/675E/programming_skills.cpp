@@ -4,9 +4,10 @@ void programming_skills() {
   intake_power(100);
   flywheel_async_pid_control(9500);
   // Drive towards the roller
-  chassis.set_drive_pid(5, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(6, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   // TODO - Spin the roller to Red
+  //  turn_roller_to("Red");
   // Drive away from the roller
   chassis.set_drive_pid(-6, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
@@ -23,8 +24,8 @@ void programming_skills() {
   // Stop the intake
   // Drive towards the roller
   chassis.set_drive_pid(10, drive_speed * high_speed_multiplier);
-  chassis.wait_drive();
   // TODO - Spin the roller to Red
+  //     turn_roller_to("Red");
   // Drive away from the roller
   chassis.set_drive_pid(-8, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
@@ -42,7 +43,7 @@ void programming_skills() {
   pros::delay(250);
   index_count(1);
   pros::delay(500);
-  chassis.set_drive_pid(15, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(12, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   flywheel_async_pid_control(4000);
   intake_power(100);
@@ -63,9 +64,9 @@ void programming_skills() {
   chassis.set_turn_pid(-135, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
   flywheel_async_pid_control(9500);
-  chassis.set_drive_pid(45, drive_speed * normal_speed_multiplier);
+  chassis.set_drive_pid(45, drive_speed * low_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(-10, drive_speed * normal_speed_multiplier);
+  chassis.set_drive_pid(-10, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   chassis.set_drive_pid(30, drive_speed * normal_speed_multiplier);
   chassis.wait_drive();
@@ -83,7 +84,7 @@ void programming_skills() {
   chassis.wait_drive();
   chassis.set_turn_pid(-180, turn_speed * high_speed_multiplier);
   chassis.wait_drive();
-  chassis.set_drive_pid(10, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(12, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   // TODO - Spin the roller to Red
   chassis.set_drive_pid(-6, drive_speed * high_speed_multiplier);
@@ -101,7 +102,7 @@ void programming_skills() {
   chassis.wait_drive();
   intake_power(0);
   // Drive towards the roller
-  chassis.set_drive_pid(10, drive_speed * high_speed_multiplier);
+  chassis.set_drive_pid(15, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
   // TODO - Spin the roller to Red
   // Drive away from the roller
@@ -113,5 +114,12 @@ void programming_skills() {
   // Drive forward to shoot
   chassis.set_drive_pid(25, drive_speed * high_speed_multiplier);
   chassis.wait_drive();
+
+
+
+
+
+  
+  expansion_pneum.set_value(true);
 }
 void backup_programming_skills() {}

@@ -12,8 +12,16 @@ void initialize() {
   chassis_default_constants();
   chassis_exit_conditions();
   ez::as::auton_selector.add_autons({
-      Auton("Prog Skills", programming_skills),
+      Auton("Right Side 1\n\nGets the 3 disks in-line, no preloads, no rollers",
+            right_side_1),
+      Auton("Right Side 2\n\nGets roller and 3 disks in-line, no preloads",
+            right_side_2),
+      Auton("Right Side 3\n\nGets roller and 3 disks in-line, 2 preloads",
+            right_side_3),
+      Auton("Right Side 4\n\nGets 3 disks in-line, 2 preloads, no rollers",
+            right_side_4),
       Auton("No Auton", no_auton),
+      Auton("Programming Skills!!!!\n\nLeft Side ONLY", programming_skills),
 
   });
   chassis.initialize();

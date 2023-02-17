@@ -31,6 +31,14 @@ void index_count(int count) {
     pros::delay(indexer_fall_time);
   }
 }
+void auton_index_count(int count) {
+  for (int i = 0; i < count; i++) {
+    indexer_pneum.set_value(true);
+    pros::delay(indexer_rise_time);
+    indexer_pneum.set_value(false);
+    pros::delay(indexer_fall_time + 250);
+  }
+}
 void flywheel_pid(double target_speed) {
   double current_velocity = (flywheel_get_velocity() * 36);
   flywheel_error = target_speed - current_velocity;
@@ -72,7 +80,7 @@ void data_export() {
   }
 }
 void turn_roller_to(std::string color) {
-  double start_time = pros::millis(), exit_time = 1500;
+  double start_time = pros::millis(), exit_time = 2000;
   int up_threshold, down_threshold;
   roller_optical.set_led_pwm(100);
   if (color == "Red") {
@@ -80,10 +88,10 @@ void turn_roller_to(std::string color) {
   } else if (color == "Blue") {
     up_threshold = 20, down_threshold = 0;
   }
-  while ((pros::millis() - start_time >= exit_time) &&
+  while ((start_time + exit_time <= pros::millis()) &&
          (roller_optical.get_hue() < up_threshold &&
           roller_optical.get_hue() > down_threshold)) {
-    intake.move(50);
+    intake_power(-25);
     pros::delay(ez::util::DELAY_TIME);
   }
   intake_power(0);
